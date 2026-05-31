@@ -1,7 +1,7 @@
-package contenedores;
+package grafos.contenedores;
 
-import recursos.NodoDoble;
-import recursos.OperacionesCL2;
+import grafos.recursos.NodoDoble;
+import grafos.recursos.OperacionesCL2;
 
 public abstract class Lista0DLinkedL implements OperacionesCL2{
 	protected NodoDoble frenteL, finalL;

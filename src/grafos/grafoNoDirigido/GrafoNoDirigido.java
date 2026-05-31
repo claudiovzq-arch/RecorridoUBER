@@ -1,7 +1,7 @@
-package grafoNoDirigido;
+package grafos.grafoNoDirigido;
 
-import Conjuntos.Aristas;
-import recursos.Connection;
+
+import grafos.recursos.Connection;
 
 import java.util.Scanner;
 
@@ -30,7 +30,7 @@ public class GrafoNoDirigido extends AbsGrafoND{
 		return maxGrado;
 	}
 
-	public Aristas getAristas(int v) {
+	/*public Aristas getAristas(int v) {
 		Aristas aristasAdyacentes = new Aristas();
 		int pos = 0;
 		for(int i = 0; i < getOrden(); i++) {
@@ -60,7 +60,7 @@ public class GrafoNoDirigido extends AbsGrafoND{
 
 		return aristas;
 	}
-
+	*/
 	
 	@Override
 	public void cargarGrafo(){

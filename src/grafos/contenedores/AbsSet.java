@@ -1,6 +1,6 @@
-package contenedores;
-import recursos.Nodo;
-import recursos.OperacionesConj;
+package grafos.contenedores;
+import grafos.recursos.Nodo;
+import grafos.recursos.OperacionesConj;
 public abstract class AbsSet implements OperacionesConj{
 	protected Nodo conjunto;
 	protected int cardinal;

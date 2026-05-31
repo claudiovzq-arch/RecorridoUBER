@@ -1,9 +1,9 @@
-package grafoDirigido;
+package grafos.grafoDirigido;
 
-import contenedores.AbsGrafo;
-import contenedores.ListaDoubleLinkedL;
-import contenedores.MatrizGrafo;
-import recursos.OperacionesGD;
+import grafos.contenedores.AbsGrafo;
+import grafos.contenedores.ListaDoubleLinkedL;
+import grafos.contenedores.MatrizGrafo;
+import grafos.recursos.OperacionesGD;
 
 public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 	

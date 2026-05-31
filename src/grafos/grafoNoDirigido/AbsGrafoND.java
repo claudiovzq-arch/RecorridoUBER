@@ -1,11 +1,11 @@
-package grafoNoDirigido;
+package grafos.grafoNoDirigido;
 
-import contenedores.AbsGrafo;
-import contenedores.GraphPriorityQueue;
-import contenedores.IntegerSet;
-import contenedores.ListaDoubleLinkedL;
-import recursos.Connection;
-import recursos.OperacionesGND;
+import grafos.contenedores.AbsGrafo;
+import grafos.contenedores.GraphPriorityQueue;
+import grafos.contenedores.IntegerSet;
+import grafos.contenedores.ListaDoubleLinkedL;
+import grafos.recursos.Connection;
+import grafos.recursos.OperacionesGND;
 
 public abstract class AbsGrafoND extends AbsGrafo implements OperacionesGND{
 	

@@ -1,7 +1,7 @@
-package grafoDirigido;
+package grafos.grafoDirigido;
 
-import Conjuntos.Arcos;
-import recursos.Connection;
+
+import grafos.recursos.Connection;
 
 import java.util.Scanner;
 
@@ -31,7 +31,7 @@ public class GrafoDirigido extends AbsGrafoD{
 		return ordenEntrada;
 	}
 
-	public Arcos getArcos(int v) {
+	/*public Arcos getArcos(int v) {
 		Arcos arcos = new Arcos();
 
 		int pos = 0;
@@ -61,7 +61,7 @@ public class GrafoDirigido extends AbsGrafoD{
 			}
 		}
 		return arcos;
-	}
+	}*/
 
 
 

@@ -1,4 +1,4 @@
-package contenedores;
+package grafos.contenedores;
 
 public class ListaDoubleLinkedL extends Lista1DLinkedL{
 

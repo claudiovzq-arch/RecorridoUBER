@@ -1,6 +1,6 @@
-package recursos;
+package grafos.recursos;
 
-import contenedores.AbsSet;
+import grafos.contenedores.AbsSet;
 
 public interface OperacionesConj {
 	

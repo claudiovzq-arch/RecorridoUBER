@@ -1,7 +1,7 @@
-package contenedores;
+package grafos.contenedores;
 
-import recursos.NodoDoble;
-import recursos.OperacionesCL3;
+import grafos.recursos.NodoDoble;
+import grafos.recursos.OperacionesCL3;
 
 // implementando una lista simple
 public abstract class Lista1DLinkedL extends Lista0DLinkedL implements OperacionesCL3{

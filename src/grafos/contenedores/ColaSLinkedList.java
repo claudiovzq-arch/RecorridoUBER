@@ -1,5 +1,5 @@
-package contenedores;
-import recursos.Nodo;
+package grafos.contenedores;
+import grafos.recursos.Nodo;
 public class ColaSLinkedList extends ColaLinkedList{
 
 	public void meter(Object elemento){

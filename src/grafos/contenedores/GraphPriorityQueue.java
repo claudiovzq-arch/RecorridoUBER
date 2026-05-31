@@ -1,6 +1,6 @@
-package contenedores;
-import recursos.Connection;
-import recursos.Nodo;
+package grafos.contenedores;
+import grafos.recursos.Connection;
+import grafos.recursos.Nodo;
 
 public class GraphPriorityQueue extends ColaPrioridad {
 	

@@ -1,4 +1,4 @@
-package recursos;
+package grafos.recursos;
 
 public interface OperacionesGD {
 

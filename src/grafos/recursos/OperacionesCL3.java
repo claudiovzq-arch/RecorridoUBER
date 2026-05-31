@@ -1,4 +1,4 @@
-package recursos;
+package grafos.recursos;
 
 // es para terminar de especificar las operaciones de una lista comun
 public interface OperacionesCL3 {	
