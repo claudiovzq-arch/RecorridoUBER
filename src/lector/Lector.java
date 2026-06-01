@@ -94,7 +94,6 @@ public class Lector {
             String nombreCalle = properties.optString("name", "S/N");
 
 
-
             for(int j = 0; j < coords.length() - 1; j++) {
                 int u = puntosUnicos.get(coords.getJSONArray(j).toString());
                 int v = puntosUnicos.get(coords.getJSONArray(j+1).toString());

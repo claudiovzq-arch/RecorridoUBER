@@ -14,7 +14,7 @@ public class main {
 
         System.out.println(aux.size());
 
-        lector.mostrarCalles();
+        //lector.mostrarCalles();
 
 
         /*for(String key : aux.keySet()) {
@@ -27,7 +27,9 @@ public class main {
 
         lector.cargarGrafoCoste(mapaCoste);
 
-        //mapaCoste.muestraGrafo();
+        mapaCoste.muestraGrafo();
+
+        lector.mostrarCalles();
 
         Map<Integer, String> calles = new HashMap<>();
 
