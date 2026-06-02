@@ -1,13 +1,14 @@
+import gestion.JSONLector;
 import grafos.grafoDirigido.GrafoDirigido;
-import lector.Lector;
+import gestion.Lector;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class main {
     public static void main(String[] args) {
-        Lector lector = new Lector();
+        /*Lector lector = new Lector();
 
         lector.setup();
 
@@ -20,7 +21,7 @@ public class main {
 
         /*for(String key : aux.keySet()) {
             System.out.println(aux.get(key));
-        }*/
+        }
 
         GrafoDirigido mapaCoste = new GrafoDirigido(aux.size());
         mapaCoste.cargarGrafoVacio();
@@ -42,6 +43,15 @@ public class main {
         callesPesos.cargarGrafoVacio();
 
         lector.cargarGrafoCalles();
+
+
+
+        */
+
+        JSONLector jsonLector = new JSONLector();
+
+
+        JSONObject jsonObject = jsonLector.getJSONObject("src/archivos/CentroyMacroSALTA.geojson");
 
 
 

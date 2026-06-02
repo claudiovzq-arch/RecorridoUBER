@@ -1,4 +1,4 @@
-package lector;
+package gestion;
 
 
 import grafos.grafoDirigido.GrafoDirigido;
@@ -26,13 +26,17 @@ public class Lector {
         try {
             contenido = Files.readString(Path.of("src/archivos/CentroyMacroSALTA.geojson"));
             json = new JSONObject(contenido); // transforma el archivo a un objeto 'json'
-            features = json.getJSONArray("features"); // lee el apartado "features" y crea un array a partir de el
+            // features = json.getJSONArray("features"); // lee el apartado "features" y crea un array a partir de el
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        cargarEsquinas();
-        cargarCalles();
+        /*cargarEsquinas();
+        cargarCalles();*/
 
+    }
+
+    public JSONObject getJson() {
+        return this.json;
     }
 
     private static String normalizar(String calle) {
