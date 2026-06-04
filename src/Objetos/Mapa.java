@@ -12,9 +12,10 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class Mapa {
-    private GrafoDirigido intersercciones, pesos;
+    private GrafoDirigido grafoIntersecciones, grafoPesos;
     private Map<String, Calle> callesPorNombre;
     private ArrayList<Calle> callesPorIndice;
+    private Map<String, Interseccion> intersecciones;
     private int cantCalles;
 
     public Mapa(JSONObject jsonObject) {
@@ -22,11 +23,16 @@ public class Mapa {
         this.callesPorIndice = new ArrayList<>();
         cargarCalles(jsonObject);
 
-        this.intersercciones = new GrafoDirigido(cantCalles);
+        this.grafoIntersecciones = new GrafoDirigido(cantCalles);
         cargarGrafoIntersecciones();
 
-        this.pesos = new GrafoDirigido(cantCalles);
+        this.intersecciones = new HashMap<>();
+
+
+        this.grafoPesos = new GrafoDirigido(cantCalles);
         cargarGrafoPesos();
+
+
 
     }
 
@@ -99,6 +105,7 @@ public class Mapa {
         for(int i = 0; i < this.callesPorIndice.size(); i++) {
             Calle calle = this.callesPorIndice.get(i);
             System.out.println(calle.getId() + " Calle: " + calle.getNombre() + ". Tipo: " + calle.getTipo());
+            calle.mostrarIntersecciones();
         }
     }
 
@@ -106,7 +113,7 @@ public class Mapa {
     // metodo para cargar el grafo de conexiones y obtener la matriz de adyacencia de 0 y 1;
 
     private void cargarGrafoIntersecciones() {
-        this.intersercciones.cargarGrafoVacio();
+        this.grafoIntersecciones.cargarGrafoVacio();
 
         for(int i = 0; i < this.cantCalles; i++) {
             Calle calleA = this.callesPorIndice.get(i);
@@ -120,10 +127,27 @@ public class Mapa {
                 int indice = 0;
 
                 while(indice < calleNodosA.size() && !hayInterseccion) {
-                    String nodoA = calleNodosA.get(indice);
-                    if(calleNodosB.contains(nodoA)) {
-                        this.intersercciones.actualizarArista(1, i, j);
-                        this.intersercciones.actualizarArista(1, j, i); // INTERSECCION SIMETRICA
+                    String coordenada = calleNodosA.get(indice);
+                    if(calleNodosB.contains(coordenada)) {
+
+                        Interseccion interseccion;
+
+                        if(!existeInterseccion(coordenada)) {
+                            interseccion = new Interseccion(coordenada);
+                            interseccion.addCalle(calleA);
+                            interseccion.addCalle(calleB);
+                            this.intersecciones.put(coordenada, interseccion);
+                        } else {
+                            interseccion = this.intersecciones.get(coordenada);
+                        }
+
+
+                        calleA.addInterseccion(interseccion); // carga en la calle i
+                        calleB.addInterseccion(interseccion); // carga en la calle j
+
+
+                        this.grafoIntersecciones.actualizarArista(1, i, j);
+                        this.grafoIntersecciones.actualizarArista(1, j, i); // INTERSECCION SIMETRICA
                         hayInterseccion = true;
                     }
                     indice++;
@@ -133,24 +157,34 @@ public class Mapa {
         }
     }
 
-    private void cargarGrafoPesos() {
-        this.pesos.cargarGrafoVacio();
+    // metodo para cargar el map de intersecciones UNICAS
 
+    private boolean existeInterseccion(String coordenada) {
+        return (this.intersecciones.containsKey(coordenada));
+    }
+
+
+
+    private void cargarGrafoPesos() {
+        this.grafoPesos.cargarGrafoVacio();
+        int cont = 0;
 
 
         for(int i = 0; i < this.cantCalles; i++) {
             for(int j = 0; j < this.cantCalles; j++) {
 
-                if(i != j && this.intersercciones.getArista(i, j) == 1) {
+                if(i != j && this.grafoIntersecciones.getArista(i, j) == 1) {
 
                     Calle calle = this.callesPorIndice.get(i);
 
-                    this.pesos.actualizarArista(calle.getVelocidad(), i, j);
-
+                    this.grafoPesos.actualizarArista(calle.getVelocidad(), i, j);
+                    cont++;
                 }
 
             }
         }
+
+
 
     }
 
@@ -159,7 +193,7 @@ public class Mapa {
             for(int j = 0; j < this.cantCalles; j++) {
                 if(i != j) {
 
-                    if(this.intersercciones.getArista(i, j) == 1) {
+                    if(this.grafoIntersecciones.getArista(i, j) == 1) {
                         System.out.println(this.callesPorIndice.get(i).getNombre() + " -> " + this.callesPorIndice.get(j).getNombre());
                     }
                 }
@@ -168,15 +202,18 @@ public class Mapa {
     }
 
     public void mostrarMatrizDePesos() {
+
         for(int i = 0; i < this.cantCalles; i++) {
             for(int j = 0; j < this.cantCalles; j++) {
                 if(i != j) {
 
-                    if(this.pesos.getArista(i, j) != this.pesos.getInfinito()) {
-                        System.out.println(this.callesPorIndice.get(i).getNombre() + " -> " + this.callesPorIndice.get(j).getNombre() + ": " + this.pesos.getArista(i,j));
+                    if(this.grafoPesos.getArista(i, j) != this.grafoPesos.getInfinito()) {
+                        System.out.println(this.callesPorIndice.get(i).getNombre() + " -> " + this.callesPorIndice.get(j).getNombre() + ": " + this.grafoPesos.getArista(i,j));
+
                     }
                 }
             }
         }
+       
     }
 }

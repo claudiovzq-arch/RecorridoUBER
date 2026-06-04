@@ -6,6 +6,7 @@ public class Calle {
     private int id;
     private String nombre, tipo;
     private ArrayList<String> nodos;
+    private ArrayList<Interseccion> intersecciones;
     private boolean manoUnica;
 
     public Calle(int id, String nombre, String tipo, ArrayList<String> nodos, boolean manoUnica) {
@@ -14,7 +15,21 @@ public class Calle {
         this.tipo = tipo;
         this.nodos = nodos;
         this.manoUnica = manoUnica;
+        this.intersecciones = new ArrayList<>();
     }
+
+    public void addInterseccion(Interseccion interseccion) {
+        if(!intersecciones.contains(interseccion)) {
+            this.intersecciones.add(interseccion);
+        }
+    }
+
+    public void mostrarIntersecciones() {
+        for(int i = 0; i < this.intersecciones.size(); i++) {
+            System.out.println(this.intersecciones.get(i).toString());
+        }
+    }
+
 
     public String getTipo() {
         return this.tipo;

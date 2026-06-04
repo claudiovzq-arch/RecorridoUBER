@@ -58,7 +58,8 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 			this.listaDistancia.insertar(infinito, i);
 		}
 		this.listaSolucion.reemplazar(startVertex,startVertex); // el primer vertice del camino
-		
+
+		// ciclo que carga el peso que cuesta ir desde startVertex hasta el resto de nodos
 		for (int i=0; i<getOrden();i++){
 			if (i!=startVertex){
 				this.listaDistancia.reemplazar(this.matrizCosto.devolver(startVertex, i), i);

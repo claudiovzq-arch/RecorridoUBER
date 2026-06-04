@@ -3,6 +3,7 @@ package grafos.grafoDirigido;
 
 import grafos.recursos.Connection;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GrafoDirigido extends AbsGrafoD{
@@ -31,39 +32,37 @@ public class GrafoDirigido extends AbsGrafoD{
 		return ordenEntrada;
 	}
 
-	/*public Arcos getArcos(int v) {
-		Arcos arcos = new Arcos();
+	public ArrayList<Connection> getArcos(int v) {
+		ArrayList<Connection> arcos = new ArrayList<>();
 
 		int pos = 0;
 
 		for(int i = 0; i < getOrden(); i++) {
 			double currCost = (double) matrizCosto.devolver(v, i);
 			if(matrizCosto.areConnected(v, i) && currCost != infinito) {
-				arcos.insertar(new Connection(v, i, currCost), pos);
+				arcos.add(pos, new Connection(v, i, currCost));
 				pos++;
 			}
 		}
 		return arcos;
 	}
 
-	public Arcos getArcos() {
-		Arcos arcos = new Arcos();
+	public ArrayList<Connection> getArcos() {
+		ArrayList<Connection> arcos = new ArrayList<>();
 
 		int pos = 0;
 
 		for(int i = 0; i < getOrden(); i++) {
-			for(int j = 0; j < getOrden(); j++) {
-				double currCost = (double) matrizCosto.devolver(i,j);
-				if(matrizCosto.areConnected(i,j) && currCost != infinito) {
-					arcos.insertar(new Connection(i, j, currCost), pos);
+			for(int j = 0; j < getOrden(); j ++) {
+				double currCost = (double) matrizCosto.devolver(i, j);
+				if(matrizCosto.areConnected(i, j) && currCost != infinito) {
+					arcos.add(pos, new Connection(i, j, currCost));
 					pos++;
 				}
 			}
 		}
 		return arcos;
-	}*/
-
-
+	}
 
 
 	@Override
@@ -97,5 +96,7 @@ public class GrafoDirigido extends AbsGrafoD{
 	public double getArista(int i, int j) {
 		return (double) this.matrizCosto.devolver(i, j);
 	}
+
+
 
 }
