@@ -39,7 +39,7 @@ public class Interseccion {
     public String toString() {
         String cad = "";
 
-        cad += "Interseccion " + this.ID + " entre " + getStringCalles() + "cant " + this.calles.size();
+        cad += "Interseccion " + this.ID + " " + this.coordenada + " entre " + getStringCalles() + "cant " + this.calles.size();
 
         return cad;
     }

@@ -100,7 +100,9 @@ public class Mapa {
         for(int i = 0; i < this.callesPorIndice.size(); i++) {
             Calle calle = this.callesPorIndice.get(i);
             System.out.println(calle.getId() + " Calle: " + calle.getNombre() + ". Tipo: " + calle.getTipo());
+            //calle.mostrarNodos();
             calle.mostrarIntersecciones();
+
         }
     }
 
@@ -162,9 +164,26 @@ public class Mapa {
                     indice++;
                 }
 
+
+
             }
         }
+
+        ordenarInterseccionesCalle();
+
+
     }
+
+    private void ordenarInterseccionesCalle() {
+        for(int i = 0; i < this.callesPorIndice.size(); i++) {
+            Calle calle = callesPorIndice.get(i);
+            calle.ordenarIntersecciones(this.intersecciones);
+            //System.out.println("Intersecciones de " + calle.getNombre() + " ordenadas.");
+        }
+
+    }
+
+
 
     public void mostrarIntersecciones() {
         for(String key : this.intersecciones.keySet()) {
@@ -188,7 +207,14 @@ public class Mapa {
 
 
         for(int i = 0; i < this.grafoPesos.getOrden(); i++) {
+            for(int j = 0; j < this.grafoPesos.getOrden(); j++) {
+                if(i != j) {
 
+
+
+
+                }
+            }
         }
 
 

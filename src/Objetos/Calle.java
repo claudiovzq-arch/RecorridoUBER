@@ -1,6 +1,7 @@
 package Objetos;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Calle {
     private int id;
@@ -18,17 +19,7 @@ public class Calle {
         this.intersecciones = new ArrayList<>();
     }
 
-    public void addInterseccion(Interseccion interseccion) {
-        if(!intersecciones.contains(interseccion)) {
-            this.intersecciones.add(interseccion);
-        }
-    }
 
-    public void mostrarIntersecciones() {
-        for(int i = 0; i < this.intersecciones.size(); i++) {
-            System.out.println(this.intersecciones.get(i).toString());
-        }
-    }
 
 
     public String getTipo() {
@@ -106,4 +97,40 @@ public class Calle {
     public boolean equals(Calle otra) {
         return (this.nombre == otra.getNombre());
     }
+
+    public void addInterseccion(Interseccion interseccion) {
+        if(!intersecciones.contains(interseccion)) {
+            this.intersecciones.add(interseccion);
+        }
+    }
+
+    public void mostrarIntersecciones() {
+        for(int i = 0; i < this.intersecciones.size(); i++) {
+            System.out.println(this.intersecciones.get(i).toString());
+        }
+    }
+
+    public void ordenarIntersecciones(Map<String, Interseccion> mapaIntersecciones) {
+        ArrayList<Interseccion> interseccionesOrdenadas = new ArrayList<>();
+
+        for(String coordenada : this.nodos) {
+
+            if(mapaIntersecciones.containsKey(coordenada)) {
+
+                Interseccion i = mapaIntersecciones.get(coordenada);
+
+
+                if(!interseccionesOrdenadas.contains(i)) {
+                    interseccionesOrdenadas.add(i);
+                }
+            }
+
+
+
+        }
+
+        this.intersecciones = interseccionesOrdenadas;
+
+    }
+
 }
