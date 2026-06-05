@@ -101,7 +101,7 @@ public class Mapa {
             Calle calle = this.callesPorIndice.get(i);
             System.out.println(calle.getId() + " Calle: " + calle.getNombre() + ". Tipo: " + calle.getTipo());
             //calle.mostrarNodos();
-            calle.mostrarIntersecciones();
+            //calle.mostrarIntersecciones();
 
         }
     }
@@ -196,28 +196,30 @@ public class Mapa {
     private void cargarGrafoPesos() {
         this.grafoPesos.cargarGrafoVacio();
 
-        /*a logica sera recorrer todo el grafo de de calles y verificar sus nodos de intersecciones
-        al obtener sus nodos de intersecciones, se verifica si podes ir desde una interseccion X a otra Y
+        // una vez ordenadas las intersecciones de las calles, se carga el grafo a partir de las calles
+
+        for(int i = 0; i < this.callesPorIndice.size(); i++) {
+            Calle calle = this.callesPorIndice.get(i);
+            ArrayList<Interseccion> interseccionesCalle = calle.getIntersecciones();
 
 
+            for(int j = 0; j < interseccionesCalle.size()-1; j++) {
 
+                Interseccion origen = interseccionesCalle.get(j);
+                Interseccion destino = interseccionesCalle.get(j+1);
 
+                double costoCalle = calle.getVelocidad(); // a partir del tipo de calle, devuelve un valor especifico
 
-        */
-
-
-        for(int i = 0; i < this.grafoPesos.getOrden(); i++) {
-            for(int j = 0; j < this.grafoPesos.getOrden(); j++) {
-                if(i != j) {
-
-
-
-
+                if(calle.isManoUnica()) {
+                    grafoPesos.actualizarArista(costoCalle, origen.getID(), destino.getID());
+                } else {
+                    grafoPesos.actualizarArista(costoCalle, origen.getID(), destino.getID());
+                    grafoPesos.actualizarArista(costoCalle, destino.getID(), origen.getID());
                 }
+
             }
+
         }
-
-
 
     }
 

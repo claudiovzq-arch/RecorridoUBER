@@ -17,6 +17,10 @@ public class Interseccion {
         this.ID = id;
     }
 
+    public int getID() {
+        return this.ID;
+    }
+
     public void addCalle(Calle calle) {
         boolean calleExiste = false;
 

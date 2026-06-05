@@ -21,6 +21,10 @@ public class Calle {
 
 
 
+    public ArrayList<Interseccion> getIntersecciones() {
+        return this.intersecciones;
+    }
+
 
     public String getTipo() {
         return this.tipo;
