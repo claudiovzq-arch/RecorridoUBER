@@ -189,8 +189,10 @@ public class Mapa {
     }
 
     private void ordenarInterseccionesCalle() {
+
         for(int i = 0; i < this.callesPorIndice.size(); i++) {
             Calle calle = callesPorIndice.get(i);
+            calle.ordenarSegmentos();
             //System.out.println(calle.getNombre());
 
 

@@ -26,4 +26,8 @@ public class Segmento {
     public String getFin() {
         return fin;
     }
+
+    public ArrayList<String> getNodos() {
+        return this.nodos;
+    }
 }

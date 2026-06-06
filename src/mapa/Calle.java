@@ -124,24 +124,59 @@ public class Calle {
     public void ordenarIntersecciones(Map<String, Interseccion> mapaIntersecciones) {
         ArrayList<Interseccion> interseccionesOrdenadas = new ArrayList<>();
 
-        for(String coordenada : this.nodos) {
+        for(Segmento segmento : segmentos) {
 
-            if(mapaIntersecciones.containsKey(coordenada)) {
+            for(String coord : segmento.getNodos()) {
 
-                Interseccion i = mapaIntersecciones.get(coordenada);
+                Interseccion i = mapaIntersecciones.get(coord);
 
-
-
-                if(!interseccionesOrdenadas.contains(i)) {
+                if(i != null && !interseccionesOrdenadas.contains(i)) {
                     interseccionesOrdenadas.add(i);
                 }
             }
-
-
-
         }
 
         this.intersecciones = interseccionesOrdenadas;
+
+    }
+
+    public void ordenarSegmentos() {
+
+        ArrayList<Segmento> ordenados = new ArrayList<>();
+
+        Segmento actual = encontrarPrimerSegmento();
+
+        if(actual == null) {
+            System.out.println("error al encontrar el primer segmento");
+        }
+
+        int indiceOrdenados = 0;
+        ordenados.add(indiceOrdenados, actual);
+
+        while(indiceOrdenados < segmentos.size()) {
+
+            Segmento siguiente = null;
+
+            for(Segmento s : segmentos) {
+
+                if(!ordenados.contains(s) &&
+                        actual.getFin().equals(s.getInicio())) {
+
+                    siguiente = s;
+                    break;
+                }
+            }
+
+            if(siguiente == null) {
+                break;
+            }
+
+            ordenados.add(siguiente);
+            actual = siguiente;
+
+        }
+
+        this.segmentos = ordenados;
 
     }
 
@@ -152,6 +187,35 @@ public class Calle {
 
 
 
+    }
+
+    private Segmento encontrarPrimerSegmento() {
+        for (Segmento segmento : segmentos) {
+
+            boolean tieneAnterior = false;
+
+            int index = 0;
+
+            while (index < segmentos.size() && !tieneAnterior) {
+                Segmento otro = segmentos.get(index);
+                if(segmento != otro) {
+
+                    if(segmento.getInicio().equals(otro.getFin())) {
+
+                        tieneAnterior = true;
+
+                    }
+                }
+                index++;
+            }
+
+            if(!tieneAnterior) {
+                return segmento;
+            }
+
+
+        }
+        return null;
     }
 
 }
