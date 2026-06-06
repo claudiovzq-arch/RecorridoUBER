@@ -13,12 +13,12 @@ public class Calle {
     private ArrayList<Interseccion> intersecciones;
     private boolean manoUnica;
 
-    public Calle(int id, String nombre, String tipo, ArrayList<String> nodos, boolean manoUnica) {
+    public Calle(int id, String nombre, String tipo, boolean manoUnica) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
-        this.nodos = nodos;
         this.manoUnica = manoUnica;
+        this.nodos = new ArrayList<>();
         this.intersecciones = new ArrayList<>();
         this.segmentos = new ArrayList<>();
     }
@@ -26,6 +26,22 @@ public class Calle {
     public void addSegmento(ArrayList<String> segmento) {
         Segmento nuevoSegmento = new Segmento(segmento);
         this.segmentos.add(nuevoSegmento);
+    }
+
+    public void addNodos(ArrayList<String> nodos) {
+        for(String nodo : nodos) {
+            if(!this.nodos.contains(nodo)) {
+                this.nodos.add(nodo);
+            }
+        }
+    }
+
+    public ArrayList<String> getNodos() {
+        return this.nodos;
+    }
+
+    public ArrayList<Segmento> getSegmentos() {
+        return this.segmentos;
     }
 
     public ArrayList<Interseccion> getIntersecciones() {
@@ -49,41 +65,6 @@ public class Calle {
         return this.nombre;
     }
 
-    public ArrayList<String> getNodos() {
-        return nodos;
-    }
-
-    public void setNodos(ArrayList<String> nodos) {
-        this.nodos = nodos;
-    }
-
-    public void agregarNodos(ArrayList<String> nodos) {
-        for(int i = 0; i < nodos.size(); i++) {
-            String nodo = nodos.get(i);
-            if(!this.nodos.contains(nodo)) {
-                this.nodos.add(nodo);
-            }
-        }
-    }
-
-    public void mostrarNodos() {
-        for(int i = 0; i < this.nodos.size(); i++) {
-            System.out.println(this.nodos.get(i));
-        }
-    }
-
-    public boolean tieneNodosRepetidos() {
-        ArrayList<String> visitados = new ArrayList<>();
-        for(int i = 0; i < this.nodos.size(); i++) {
-            if(visitados.contains(this.nodos.get(i))) {
-                return true;
-            }
-            visitados.add(this.nodos.get(i));
-        }
-
-        return false;
-
-    }
 
     public double getVelocidad() {
         double velocidad = 0;

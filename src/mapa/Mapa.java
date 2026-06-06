@@ -83,21 +83,18 @@ public class Mapa {
             nombreCalle = normarlizarNombreCalle(nombreCalle);
 
 
-            ArrayList<String> nodos = getNodos(featureIndex.getJSONObject("geometry"));
+            ArrayList<String> segmento = getNodos(featureIndex.getJSONObject("geometry"));
 
             if(!callesPorNombre.containsKey(nombreCalle)) { // si la calle todavia no se cargo.
-                Calle calle = new Calle(contadorCalles, nombreCalle, tipoCalle, nodos, esManoUnica);
-                calle.addSegmento(nodos);
+                Calle calle = new Calle(contadorCalles, nombreCalle, tipoCalle, esManoUnica);
+                calle.addSegmento(segmento);
+                calle.addNodos(segmento);
                 this.callesPorNombre.put(nombreCalle, calle);
                 this.callesPorIndice.add(calle);
                 contadorCalles++;
             } else {
-
-
-
-
-                this.callesPorNombre.get(nombreCalle).agregarNodos(nodos); // agrega los nuevos nodos a una calle ya existente
-                this.callesPorNombre.get(nombreCalle).addSegmento(nodos);
+                this.callesPorNombre.get(nombreCalle).addNodos(segmento); //agrega los nodos del segmento a la lista de nodos de la calle
+                this.callesPorNombre.get(nombreCalle).addSegmento(segmento); // agrega el nuevo segmento a una calle ya existente
             }
 
             this.cantCalles = contadorCalles;
