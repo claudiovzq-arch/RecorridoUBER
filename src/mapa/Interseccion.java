@@ -20,6 +20,10 @@ public class Interseccion {
         return this.ID;
     }
 
+    public int getCantCalles() {
+        return this.calles.size();
+    }
+
     public void setCalles(ArrayList<Calle> calles) {
         this.calles = calles;
     }

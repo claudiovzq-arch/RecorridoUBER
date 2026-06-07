@@ -57,7 +57,7 @@ public class Mapa {
         JSONObject feature;
 
         int contadorCalles = 0;
-        int contadorIntersecciones = 0;
+        int contadorCoordenadas = 0;
 
         for(int i = 0; i < features.length(); i++) {
             feature = features.getJSONObject(i);
@@ -91,13 +91,13 @@ public class Mapa {
                         contadorCalles++;
                     }
 
-                    int pos = buscarInterseccion(this.intersecciones, interseccion);
+                    int pos = buscarIntersecciones(this.intersecciones, interseccion);
 
 
                     if(pos==-1) {
-                        interseccion.setID(contadorIntersecciones);
-                        this.intersecciones.put(contadorIntersecciones, interseccion);
-                        contadorIntersecciones++;
+                        interseccion.setID(contadorCoordenadas);
+                        this.intersecciones.put(contadorCoordenadas, interseccion);
+                        contadorCoordenadas++;
                     } else {
                         this.intersecciones.get(pos).addCalle(calle);
                     }
@@ -105,10 +105,20 @@ public class Mapa {
                 }
             }
         }
+
+        int contadorIntersecciones = 0;
+
+        for(Integer id : this.intersecciones.keySet()) {
+            Interseccion coordenada = this.intersecciones.get(id);
+
+            if(coordenada.getCantCalles() < 2) {
+        }
+
+
     }
 
 
-    private int buscarInterseccion(Map<Integer, Interseccion> mapa, Interseccion busc){
+    private int buscarIntersecciones(Map<Integer, Interseccion> mapa, Interseccion busc){
         boolean detectado = false;
         int pos=0;
 
@@ -139,6 +149,14 @@ public class Mapa {
         }
 
         System.out.println(this.calles.size());
+    }
+
+    public void mostrarIntersecciones() {
+        for(int i = 0; i < this.intersecciones.size(); i++) {
+            Interseccion interseccion = this.intersecciones.get(i);
+            System.out.println(interseccion.toString());
+        }
+        System.out.println(this.intersecciones.size());
     }
 
 

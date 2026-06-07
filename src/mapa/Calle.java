@@ -6,9 +6,6 @@ import java.util.Map;
 public class Calle {
     private int id;
     private String nombre, tipo;
-
-    //parche
-
     private boolean manoUnica;
 
     public Calle(int id, String nombre, String tipo, boolean manoUnica) {
