@@ -12,9 +12,11 @@ public class main {
 
         Mapa mapa = new Mapa(salta);
 
-        mapa.mostrarCalles();
+        //mapa.mostrarCalles();
 
-        mapa.mostrarIntersecciones();
+        //mapa.mostrarIntersecciones();
+
+        mapa.mostrarMatrizDePesos();
 
 
 

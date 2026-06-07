@@ -12,6 +12,12 @@ public class Interseccion {
         this.coordenada = coordenada;
     }
 
+    public ArrayList<Calle> getCalles() {
+        return this.calles;
+    }
+
+
+
     public void setID(int id) {
         this.ID = id;
     }
@@ -32,6 +38,21 @@ public class Interseccion {
         if(!this.calles.contains(calle)) {
             this.calles.add(calle);
         }
+    }
+
+    public Calle calleCompartida(Interseccion inter2) {
+        Calle c=null;
+        for(int i=0; i < this.calles.size(); i++) {
+            Calle calle1 = this.calles.get(i);
+            ArrayList<Calle> inter2Calles = inter2.getCalles();
+            for(int j=0; j < inter2Calles.size(); j++) {
+                Calle calle2 = inter2Calles.get(j);
+                if(calle1.equals(calle2) ) {
+                    c=calle1;
+                }
+            }
+        }
+        return c;
     }
 
     public Coordenada getCoordenada() {
@@ -73,5 +94,14 @@ public class Interseccion {
         return nombreCalles;
 
 
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Interseccion)) return false;
+        else {
+            Interseccion int2 = (Interseccion) obj;
+            return (this.coordenada.equals(int2.getCoordenada()));
+        }
     }
 }

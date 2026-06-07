@@ -22,7 +22,7 @@ public class Mapa {
         cargar(jsonObject);
 
         this.grafoPesos = new GrafoDirigido(this.intersecciones.size());
-        cargarGrafoPesos();
+        cargarGrafoPesos(jsonObject);
     }
 
 
@@ -86,11 +86,11 @@ public class Mapa {
                     Interseccion interseccion = new Interseccion(coord);
 
                     if (!this.calles.containsKey(nombreCalle)) { // carga la cantidad de calles unicas
-                        calle = new Calle(contadorCalles, nombreCalle, tipoCalle, esManoUnica);
+                        calle = new Calle(contadorCalles, nombreCalle, tipoCalle, esManoUnica); // si el mapa de calles no contiene una calle asociada a 'nombreCalle', crea una nueva
                         this.calles.put(nombreCalle, calle);
                         contadorCalles++;
                     } else {
-                        calle = this.calles.get(nombreCalle);
+                        calle = this.calles.get(nombreCalle); // si el mapa de calles  contiene una calle asociada a 'nombreCalle', la obtiene a partir de este ultimo
                     }
 
                     int pos = buscarCoordenada(aux, interseccion);
@@ -176,26 +176,93 @@ public class Mapa {
 
 
 
-    private void cargarGrafoPesos() {
+    private void cargarGrafoPesos(JSONObject jsonObject) {
         this.grafoPesos.cargarGrafoVacio();
 
+        JSONArray features = jsonObject.getJSONArray("features");
 
-        // una vez ordenadas las intersecciones de las calles, se carga el grafo a partir de las calles
+
+
+
+        for(int i = 0; i < features.length(); i++) {
+            JSONObject f = features.getJSONObject(i); // obtiene la calle
+            JSONArray coords = f.getJSONObject("geometry").getJSONArray("coordinates"); // obtiene las coordenadas de la calle
+
+            int index = 0, u = -1, v = -1;
+            Coordenada coordIni = null, coordFin = null;
+            boolean encontroU = false;
+            boolean encontroV = false;
+
+
+
+            while(index<coords.length() && !encontroU) {
+                coordIni = new Coordenada((coords.getJSONArray(index)).getDouble(0), (coords.getJSONArray(index)).getDouble(1));
+                for(int j = 0; j < this.intersecciones.size(); j++) {
+                    Interseccion interU = this.intersecciones.get(j);
+                    Coordenada coordU = interU.getCoordenada();
+                    if(coordU.equals(coordIni)) {
+                        u = interU.getID();
+                        encontroU = true;
+                        break;
+                    }
+                }
+                index++;
+            }
+            while(index<coords.length() && !encontroV) {
+                coordFin = new Coordenada((coords.getJSONArray(index)).getDouble(0), (coords.getJSONArray(index)).getDouble(1));
+                for(int j = 0; j < this.intersecciones.size(); j++) {
+                    Interseccion interV = this.intersecciones.get(j);
+                    Coordenada coordV = interV.getCoordenada();
+                    if(coordV.equals(coordFin)) {
+                        v = interV.getID();
+                        encontroV = true;
+                        break;
+                    }
+                }
+                index++;
+            }
+
+
+
+            if(encontroU && encontroV) {
+                //System.out.println(encontroU + " " + encontroV);
+                Interseccion intIni=this.intersecciones.get(u), intFin=this.intersecciones.get(v);
+                Calle calle = intIni.calleCompartida(intFin);
+
+                double costo = coordIni.haversine(coordFin) / calle.getVelocidad();
+
+                this.grafoPesos.actualizarArista(costo, u, v);
+
+                if(!calle.isManoUnica()) {
+                    this.grafoPesos.actualizarArista(costo, v, u);
+                }
+
+            }
+
+
+
+        }
+
 
 
 
     }
 
 
+
+
     public void mostrarMatrizDePesos() {
         //this.grafoPesos.muestraGrafo();
 
         for(int i = 0; i < this.grafoPesos.getOrden(); i++) {
+
             for(int j = 0; j < this.grafoPesos.getOrden(); j++) {
 
                 double costo = this.grafoPesos.getArista(i,j);
 
+
                 if(i != j) {
+
 
                     if(costo != GrafoDirigido.getInfinito()) {
 
