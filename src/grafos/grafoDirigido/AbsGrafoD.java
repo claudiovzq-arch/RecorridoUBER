@@ -125,7 +125,7 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 	}
 	
 
-	public void muestraFloyd(){
+	public void realizarFloyd(){
 		this.matrizCaminoF=new MatrizGrafo(this.ordenGrafo);
 		this.matrizCostoF=new MatrizGrafo(this.ordenGrafo);
 		double costoF;
@@ -170,7 +170,7 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 	}
 	
 	public int getVertexMinimo() {
-		muestraFloyd();
+		realizarFloyd();
 
 		double costoMinimo = infinito;
 		int verticeOptimo = -1;
@@ -195,6 +195,10 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 
 		return verticeOptimo;
 	}
+
+	public double getAristaFloyd(int origen, int destino) {
+		return (double) this.matrizCostoF.devolver(origen, destino);
+	}
 	
 	public void muestraCaminoFloyd(int origen, int destino){
 		double hayCamino = ((Double)this.matrizCostoF.devolver(origen, destino)).doubleValue();
@@ -204,6 +208,7 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 			buscarCaminoFloydR(origen,destino);
 			System.out.print(" "+destino);
 			System.out.println();
+			System.out.println(hayCamino);
 		}else {
 			System.out.println("NO hay Camino entre " + origen + " y " + destino);
 		}	

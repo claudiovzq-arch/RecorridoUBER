@@ -24,6 +24,7 @@ public class Mapa {
 
         this.grafoPesos = new GrafoDirigido(this.intersecciones.size());
         cargarGrafoPesos(jsonObject);
+        realizarAlgoritmosGrafo();
     }
 
 
@@ -117,7 +118,8 @@ public class Mapa {
     }
 
     private void depurarIntersecciones(Map<Integer, Interseccion> mapa) {
-
+        // - A partir de un mapa de puntos unicos, depura las intersecciones como aquellas que poseen mas de una calle asociada
+        // - Codigo de Matias.
         int indiceIntersecciones = 0;
 
         for(Integer i : mapa.keySet()) {
@@ -131,7 +133,6 @@ public class Mapa {
         }
 
     }
-
 
     private int buscarCoordenada(Map<Integer, Interseccion> mapa, Interseccion busc){
         boolean detectado = false;
@@ -155,32 +156,6 @@ public class Mapa {
         return -1;
 
     }
-
-
-    public void mostrarCalles() {
-        for(String nombreCalle : this.calles.keySet()) {
-            Calle calle = this.calles.get(nombreCalle);
-            System.out.println(calle.getId() + " Calle: " + calle.getNombre() + ". Tipo: " + calle.getTipo());
-        }
-
-        System.out.println(this.calles.size());
-    }
-
-    public void mostrarIntersecciones() {
-
-        for(Coordenada coord : this.intersecciones.keySet()) {
-            Interseccion interseccion = this.intersecciones.get(coord);
-            System.out.println(interseccion.toString());
-        }
-        System.out.println(this.intersecciones.size());
-
-    }
-
-
-
-
-
-
 
     private void cargarGrafoPesos(JSONObject jsonObject) {
         this.grafoPesos.cargarGrafoVacio();
@@ -244,8 +219,7 @@ public class Mapa {
         }
     }
 
-
-    //metodo auxiliar para mostra la matriz de pesos
+    //metodo auxiliar para mostrar la matriz de pesos
 
     private Map<Integer, Interseccion> armarMapaPorId() {
         Map<Integer, Interseccion> aux = new HashMap<>();
@@ -257,6 +231,11 @@ public class Mapa {
         }
 
         return aux;
+    }
+
+    //metodo privado que realiza el Dijkstra y Floyd en el grafo
+    private void realizarAlgoritmosGrafo() {
+        this.grafoPesos.realizarFloyd();
     }
 
     public void mostrarMatrizDePesos() {
@@ -281,9 +260,27 @@ public class Mapa {
         }
     }
 
+    public GrafoDirigido getGrafoPesos() {
+        return this.grafoPesos;
+    }
+
+    public Interseccion getInterseccion(int index) {
+        Interseccion aux = null;
+        for(Coordenada c : this.intersecciones.keySet()) {
+            Interseccion interseccion = this.intersecciones.get(c);
+            if(interseccion.getID() == index) {
+                aux = interseccion;
+            }
+        }
+
+        if(aux == null) {
+            System.out.println("no existe interseccion asociada a esa id");
+        }
+        return aux;
+    }
 
     public void simularRecorrido(int origen, int destino) { // simulacion por IDs de intersecciones
-        this.grafoPesos.muestraFloyd();
+
 
         this.grafoPesos.muestraCaminoFloyd(origen, destino);
 
@@ -296,7 +293,24 @@ public class Mapa {
             System.out.println(interseccionesPorID.get(idInterseccion).toString());
         }
 
+    }
 
+    public void mostrarCalles() {
+        for(String nombreCalle : this.calles.keySet()) {
+            Calle calle = this.calles.get(nombreCalle);
+            System.out.println(calle.getId() + " Calle: " + calle.getNombre() + ". Tipo: " + calle.getTipo());
+        }
+
+        System.out.println(this.calles.size());
+    }
+
+    public void mostrarIntersecciones() {
+
+        for(Coordenada coord : this.intersecciones.keySet()) {
+            Interseccion interseccion = this.intersecciones.get(coord);
+            System.out.println(interseccion.toString());
+        }
+        System.out.println(this.intersecciones.size());
 
     }
 }
