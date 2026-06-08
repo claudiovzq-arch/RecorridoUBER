@@ -16,9 +16,9 @@ public class main {
 
         //mapa.mostrarIntersecciones();
 
-        mapa.mostrarMatrizDePesos();
+        //mapa.mostrarMatrizDePesos();
 
-        //mapa.simularRecorrido(415, 511);
+        mapa.simularRecorrido(415, 511);
 
     }
 }

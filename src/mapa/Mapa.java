@@ -245,36 +245,40 @@ public class Mapa {
     }
 
 
+    //metodo auxiliar para mostra la matriz de pesos
 
+    private Map<Integer, Interseccion> armarMapaPorId() {
+        Map<Integer, Interseccion> aux = new HashMap<>();
+
+        for(Coordenada c : this.intersecciones.keySet()) {
+            Interseccion interseccion = this.intersecciones.get(c);
+            int idInterseccion = interseccion.getID();
+            aux.put(idInterseccion, interseccion);
+        }
+
+        return aux;
+    }
 
     public void mostrarMatrizDePesos() {
-        this.grafoPesos.muestraGrafo();
+        //this.grafoPesos.muestraGrafo();
 
-        /*for(int i = 0; i < this.grafoPesos.getOrden(); i++) {
+        Map<Integer, Interseccion> interseccionesPorID = armarMapaPorId();
 
+        for(int i = 0; i < this.grafoPesos.getOrden(); i++) {
             for(int j = 0; j < this.grafoPesos.getOrden(); j++) {
-
                 double costo = this.grafoPesos.getArista(i,j);
-
-
                 if(i != j) {
-
-
                     if(costo != GrafoDirigido.getInfinito()) {
 
-                        Interseccion origen = this.intersecciones.get(i);
-                        Interseccion destino = this.intersecciones.get(j);
+                        Interseccion origen = interseccionesPorID.get(i);
+                        Interseccion destino = interseccionesPorID.get(j);
 
 
                         System.out.println(origen.getDescripcion() + " -> " + destino.getDescripcion() + " costo: " + costo);
-
                     }
-
                 }
-
             }
-        }*/
-
+        }
     }
 
 
@@ -283,11 +287,13 @@ public class Mapa {
 
         this.grafoPesos.muestraCaminoFloyd(origen, destino);
 
+        Map<Integer, Interseccion> interseccionesPorID = armarMapaPorId();
+
         ArrayList<Integer> camino = this.grafoPesos.getCaminoFloyd(origen, destino);
 
         for(int i = 0; i < camino.size(); i++) {
             int idInterseccion = camino.get(i);
-            System.out.println(this.intersecciones.get(idInterseccion).toString());
+            System.out.println(interseccionesPorID.get(idInterseccion).toString());
         }
 
 
