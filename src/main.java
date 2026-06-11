@@ -2,7 +2,7 @@ import mapa.Mapa;
 import gestion.JSONLector;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+
 
 public class main {
     public static void main(String[] args) {
@@ -15,13 +15,15 @@ public class main {
 
         UberApp uberApp = new UberApp(mapa);
 
+        uberApp.simular();
+
 
 
 
 
         //mapa.mostrarCalles();
 
-        mapa.mostrarIntersecciones();
+        //mapa.mostrarIntersecciones();
 
         //mapa.mostrarMatrizDePesos();
 

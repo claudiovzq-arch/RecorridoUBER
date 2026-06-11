@@ -17,18 +17,27 @@ import java.util.Random;
 public class Chofer {
 
     private int idChofer;
-    private Interseccion posicion, destino;
+    private Interseccion posicion;
     private boolean estaOcupado;
-
+    private double ETA;
 
 
     public Chofer(int idChofer, boolean estaOcupado) {
         this.idChofer = idChofer;
         this.estaOcupado = estaOcupado;
+        this.ETA = -1;
     }
 
     public int getIdChofer() {
         return this.idChofer;
+    }
+
+    public double getETA() {
+        return ETA;
+    }
+
+    public void setETA(double ETA) {
+        this.ETA = ETA;
     }
 
     public void setEstaOcupado(boolean estaOcupado) {
@@ -37,10 +46,6 @@ public class Chofer {
 
     public boolean estaOcupado() {
         return this.estaOcupado;
-    }
-
-    public void setDestino(Interseccion destino) {
-        this.destino = destino;
     }
 
     public Interseccion getPosicion() {
@@ -60,6 +65,18 @@ public class Chofer {
         int u = random.nextInt(grafoPesos.getOrden() + 1);
 
         this.posicion = mapa.getInterseccion(u);
+    }
+
+    public void trabajar(Viaje viaje) {
+
+    }
+
+    public void comenzarRecogida(Viaje viaje) {
+
+    }
+
+    public void comenzarViaje(Viaje viaje) {
+
     }
 
 }

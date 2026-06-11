@@ -86,7 +86,7 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 			}
 			
 			if(minVertex!=-1){
-				System.out.println("it " + i + " minVertex " + minVertex + " minCost " + minCost);
+				//System.out.println("it " + i + " minVertex " + minVertex + " minCost " + minCost);
 				this.listaSolucion.reemplazar(minVertex, minVertex);
 				this.listaDistancia.reemplazar(minCost, minVertex);
 					
@@ -107,10 +107,6 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 		}		
 	}
 
-
-
-
-	
 	public void muestraGrafo(){
 		double currCost;
 		for (int i=0; i<getOrden();i++){
@@ -124,7 +120,6 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 			}			
 		}		
 	}
-	
 
 	public void realizarFloyd(){
 		this.matrizCaminoF=new MatrizGrafo(this.ordenGrafo);
