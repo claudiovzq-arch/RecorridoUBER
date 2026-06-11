@@ -17,7 +17,7 @@ import java.util.Random;
 public class Chofer {
 
     private int idChofer;
-    private Interseccion posicion;
+    private Interseccion posicion, destino;
     private boolean estaOcupado;
 
 
@@ -25,6 +25,10 @@ public class Chofer {
     public Chofer(int idChofer, boolean estaOcupado) {
         this.idChofer = idChofer;
         this.estaOcupado = estaOcupado;
+    }
+
+    public int getIdChofer() {
+        return this.idChofer;
     }
 
     public void setEstaOcupado(boolean estaOcupado) {
@@ -35,8 +39,9 @@ public class Chofer {
         return this.estaOcupado;
     }
 
-
-
+    public void setDestino(Interseccion destino) {
+        this.destino = destino;
+    }
 
     public Interseccion getPosicion() {
         return this.posicion;
