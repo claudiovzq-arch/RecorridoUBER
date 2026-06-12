@@ -20,9 +20,9 @@ public class Usuario {
 
     }
 
-    /*public void setAtendido(boolean atendido) {
-        this.atendido = atendido;
-    }*/
+    public ColaChoferes getColaChoferes() {
+        return this.colaChoferes;
+    }
 
     public Interseccion getOrigen() {
         return origen;
@@ -98,6 +98,10 @@ public class Usuario {
                 if(acepta && !chofer.estaOcupado()) {
                     chofer.setEstaOcupado(acepta);
                     atendido = true;
+                }
+
+                if(!acepta) {
+                    System.out.println(chofer.getIdChofer() + " rechazo tu viaje");
                 }
             }
             if(!atendido && this.colaChoferes.estaVacia()) { // se recorrio la cola de choferes y no acepto ninguno

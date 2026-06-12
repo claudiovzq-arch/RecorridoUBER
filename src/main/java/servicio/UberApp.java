@@ -8,11 +8,13 @@ public class UberApp {
     private ArrayList<Chofer> choferes;
     private ArrayList<Usuario> usuarios;
     private Mapa mapa;
+    private ArrayList<Viaje> viajes;
 
     public UberApp (Mapa mapa) {
         this.mapa = mapa;
         this.choferes = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+        this.viajes = new ArrayList<>();
     }
 
     public void generarUsuario() {
@@ -35,6 +37,10 @@ public class UberApp {
         }
     }
 
+    public Viaje getUltimoViaje() {
+        return this.viajes.get(this.viajes.size() - 1);
+    }
+
     public Usuario getUltimoUsuario() {
         return this.usuarios.get(this.usuarios.size() - 1);
     }
@@ -53,7 +59,7 @@ public class UberApp {
         Viaje viaje = usuario.pedirUber();
         viaje.cargarCaminoUsuario(mapa);
         viaje.cargarCaminoDestino(mapa);
-
+        this.viajes.add(viaje);
         if(viaje != null) {
             Chofer chofer = viaje.getChofer();
             chofer.trabajar(viaje, this.mapa);

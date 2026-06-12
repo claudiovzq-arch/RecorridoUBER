@@ -34,7 +34,7 @@ public class Interfaz extends Application {
         controlador.setUberApp(uberApp);
 
 
-        Scene scene = new Scene(root, 400, 200);
+        Scene scene = new Scene(root, 600, 400);
 
         stage.setTitle("Prueba");
         stage.setScene(scene);
