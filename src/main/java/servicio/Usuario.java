@@ -126,7 +126,7 @@ public class Usuario {
 
         borrarColaChoferes();
 
-        return  viaje;
+        return viaje;
     }
 
     private void borrarColaChoferes() {

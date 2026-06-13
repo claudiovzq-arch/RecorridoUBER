@@ -17,6 +17,10 @@ public class UberApp {
         this.viajes = new ArrayList<>();
     }
 
+    public Mapa getMapa() {
+        return this.mapa;
+    }
+
     public void generarUsuario() {
         Usuario nuevoUsuario = new Usuario(this.usuarios.size());
         nuevoUsuario.cargarPosiciones(this.mapa);
@@ -54,7 +58,7 @@ public class UberApp {
             generarChofer();
         }*/
 
-        //generarUsuario();
+        generarUsuario();
         Usuario usuario = this.usuarios.get(0);
         Viaje viaje = usuario.pedirUber();
         viaje.cargarCaminoUsuario(mapa);

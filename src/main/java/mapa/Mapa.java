@@ -73,6 +73,7 @@ public class Mapa {
             if (geom.getString("type").equals("LineString") && nombreCalle != null) { //Verificacion de que el feature sea lineString y la calle tenga nombre
                 JSONArray coords = geom.getJSONArray("coordinates");
                 for (int j = 0; j < coords.length(); j++) {
+                    //coord[longtitud, latitud]
                     Coordenada coord = new Coordenada((coords.getJSONArray(j)).getDouble(0), (coords.getJSONArray(j)).getDouble(1));
                     String tipoCalle = properties.optString("highway", "residential");
 

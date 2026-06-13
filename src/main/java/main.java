@@ -9,7 +9,7 @@ public class main {
 
         JSONLector jsonLector = new JSONLector();
 
-        JSONObject salta = jsonLector.getJSONObject("src/archivos/CentroyMacroSALTA.geojson");
+        JSONObject salta = jsonLector.getJSONObject("src/main/java/archivos/CentroyMacroSALTA.geojson");
 
         Mapa mapa = new Mapa(salta);
 

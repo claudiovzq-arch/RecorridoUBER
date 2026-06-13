@@ -3,7 +3,10 @@ package interfaz;
 import grafos.contenedores.ColaLinkedList;
 import grafos.contenedores.ColaSLinkedList;
 import grafos.contenedores.PilaSLinkedList;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,10 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-import servicio.Chofer;
-import servicio.ColaChoferes;
-import servicio.UberApp;
-import servicio.Viaje;
+import servicio.*;
 
 public class Controlador {
 
@@ -39,7 +39,7 @@ public class Controlador {
     private void generarUsuario() {
         uberApp.generarUsuario();
         System.out.println("usuario generado " + uberApp.getUltimoUsuario().getIdUsuario());
-        actualizarChoferes();
+        //actualizarChoferes();
     }
 
     @FXML
@@ -48,13 +48,52 @@ public class Controlador {
         System.out.println("chofer generado " + uberApp.getUltimoChofer().getIdChofer());
     }
 
+
+    //codigo para testear el movimiento de objetos en la interfaz.
+    /*@FXML
+    private Circle auto;
+
+    @FXML
+    private Circle destino;
+
+
     @FXML
     private void simularViaje() {
-        uberApp.simular();
-        moverAuto(uberApp.getUltimoViaje());
-        Chofer chofer = uberApp.getUltimoViaje().getChofer();
+        //uberApp.simular();
 
-    }
+        Usuario usuario = uberApp.getUltimoUsuario();
+        Viaje viaje = usuario.pedirUber();
+        viaje.cargarCaminoDestino(uberApp.getMapa());
+        viaje.cargarCaminoUsuario(uberApp.getMapa());
+
+        Chofer chofer = viaje.getChofer();
+
+        int pasos = viaje.getCaminoAlUsuario().tamanio();
+        double pasoVisual = (destino.getLayoutX() - auto.getLayoutX()) / (pasos - 1);
+        System.out.println(pasoVisual);
+
+        new Thread(() -> {
+
+            chofer.comenzarRecogida(
+                    viaje,
+                    uberApp.getMapa(),
+                    posicion -> {
+
+                        Platform.runLater(() -> {
+
+                            auto.setLayoutX(
+                                    auto.getLayoutX() + pasoVisual
+                            );
+
+                        });
+
+                    });
+
+        }).start();
+
+
+    }*/
+
 
     @FXML
     private Label lblUsuario;
@@ -86,37 +125,8 @@ public class Controlador {
     }
 
 
-    @FXML
-    private Circle auto;
-
-    @FXML
-    private Circle destino;
-
-    private void moverAuto(Viaje viaje) {
-        PilaSLinkedList caminoAlDestino = viaje.getCaminoAlDestino();
-        int cantidadIntersecciones = caminoAlDestino.tamanio();
-
-        double segundos = cantidadIntersecciones - 1;
-
-        double desplazamientoX =
-                destino.getCenterX() - auto.getCenterX();
-
-        double desplazamientoY =
-                destino.getCenterY() - auto.getCenterY();
-
-        TranslateTransition movimiento =
-                new TranslateTransition(
-                        Duration.seconds(segundos),
-                        auto);
-
-        movimiento.setToX(desplazamientoX);
-        movimiento.setToY(desplazamientoY);
-
-        movimiento.play();
 
 
-
-    }
 
 
 

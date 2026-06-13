@@ -6,6 +6,7 @@ import mapa.Interseccion;
 import mapa.Mapa;
 
 import java.util.Random;
+import java.util.function.Consumer;
 
 //2do parcial
 //entra arbol AVL, rotaciones
@@ -69,9 +70,13 @@ public class Chofer {
         this.posicion = mapa.getInterseccion(u);
     }
 
+    public void mover(Viaje viaje, Mapa mapa) {
+
+    }
+
     public void trabajar(Viaje viaje, Mapa mapa) {
         System.out.println("comienza recogida");
-        comenzarRecogida(viaje, mapa);
+        //comenzarRecogida(viaje, mapa);
         System.out.println("comienza viaje del usuario");
         comenzarViaje(viaje, mapa);
     }
@@ -83,11 +88,13 @@ public class Chofer {
     * hasta la posición del usuario al que le aceptó el viaje.
     * */
 
-    private void comenzarRecogida(Viaje viaje, Mapa mapa) {
+    public void comenzarRecogida(Viaje viaje, Mapa mapa, Consumer<Interseccion> onMovimiento) {
         PilaSLinkedList caminoRecogida = viaje.getCaminoAlUsuario();
         while(!caminoRecogida.estaVacia()) {
             int interseccionID = (int) caminoRecogida.sacar();
             this.posicion = mapa.getInterseccion(interseccionID);
+
+            onMovimiento.accept(this.posicion);
 
 
             System.out.println(this.posicion.toString());
@@ -107,11 +114,10 @@ public class Chofer {
     /* comenzarViaje(viaje, mapa)
      * Parámetros: "viaje" de tipo Viaje, "mapa" de tipo Mapa.
      * A partir de "viaje" obtiene el camino más barato para ir al destino del usuario y con "mapa" va actualizando su posición.
-     * Lo que hace el metodo es que el chofer primero se mueva desde la posición en la que agarró el viaje
-     * hasta la posición del usuario al que le aceptó el viaje.
+     * Lo que hace el metodo es que el chofer primero se mueva desde la posición del usuario hasta el destino de este ultimo
      * */
 
-    private void comenzarViaje(Viaje viaje, Mapa mapa) {
+    public void comenzarViaje(Viaje viaje, Mapa mapa) {
         PilaSLinkedList caminoViaje = viaje.getCaminoAlDestino();
         while(!caminoViaje.estaVacia()) {
             int interseccionID = (int) caminoViaje.sacar();
