@@ -9,7 +9,7 @@ public class Viaje {
     private Usuario usuario;
     private Chofer chofer;
     private Interseccion origen, destino;
-    private boolean estado;
+    private boolean finalizado;
     private PilaSLinkedList caminoAlUsuario, caminoAlDestino;
 
 
@@ -23,11 +23,11 @@ public class Viaje {
         this(usuario, chofer);
         this.origen = origen;
         this.destino = destino;
-        this.estado = false;
+        this.finalizado = false;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
     }
 
     public Chofer getChofer() {

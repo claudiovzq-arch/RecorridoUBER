@@ -66,8 +66,8 @@ public class UberApp {
         this.viajes.add(viaje);
         if(viaje != null) {
             Chofer chofer = viaje.getChofer();
-            chofer.trabajar(viaje, this.mapa);
-            viaje.setEstado(true);
+            //chofer.trabajar(viaje, this.mapa);
+            viaje.setFinalizado(true);
         } else {
             System.out.println("el usuario " + usuario.getIdUsuario() + " no logro encontrar chofer.");
         }
