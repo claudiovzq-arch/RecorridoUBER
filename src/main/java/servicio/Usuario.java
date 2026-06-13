@@ -46,6 +46,7 @@ public class Usuario {
 
         grafoMapa.realizarDijkstra(this.origen.getID());
 
+        this.colaChoferes.limpiar();
         for(Chofer chofer : choferes) {
             Interseccion posicionChofer = chofer.getPosicion();
             double costo = grafoMapa.getDistanciaDijkstra(posicionChofer.getID()); //para cada chofer, le calcula el ETA

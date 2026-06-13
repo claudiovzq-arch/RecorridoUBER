@@ -1,11 +1,6 @@
 package interfaz;
 
-import grafos.contenedores.ColaLinkedList;
-import grafos.contenedores.ColaSLinkedList;
 import grafos.contenedores.PilaSLinkedList;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.shape.Circle;
-import javafx.util.Duration;
 import mapa.Interseccion;
 import mapa.Mapa;
 import servicio.*;
@@ -28,24 +21,18 @@ public class Controlador {
         this.uberApp = uberApp;
     }
 
-
     @FXML
     private Button btnGenUsuario;
-
     @FXML
     private Button btnGenChofer;
-
     @FXML
     private Button btnSimular;
-
     @FXML
     private Label lblEventos;
-
     @FXML
     private TextArea txtEventos;
 
-    private void log(String mensaje) {
-
+    private void log(String mensaje) { //metodo para ir actualizando la lista de eventos
         Platform.runLater(() -> {
             txtEventos.appendText(mensaje + "\n");
         });
@@ -58,7 +45,7 @@ public class Controlador {
         uberApp.generarUsuario();
         System.out.println("usuario generado " + uberApp.getUltimoUsuario().getIdUsuario());
         log("Usuario " + uberApp.getUltimoUsuario().getIdUsuario() + " fue generado con exito.");
-        //actualizarChoferes();
+        actualizarChoferes();
     }
 
     @FXML
@@ -66,6 +53,7 @@ public class Controlador {
         uberApp.generarChofer();
         System.out.println("chofer generado " + uberApp.getUltimoChofer().getIdChofer());
         log("Chofer " + uberApp.getUltimoChofer().getIdChofer() + " fue generado con exito.");
+        actualizarChoferes();
     }
 
 
@@ -93,7 +81,7 @@ public class Controlador {
         } else {
             log("Ninguna unidad acepto el viaje del usuario " + usuario.getIdUsuario() + ".");
         }
-        //actualizarChoferes();
+        actualizarChoferes();
     }
 
     /* comenzarRecogida(viaje, mapa, chofer)
@@ -172,6 +160,7 @@ public class Controlador {
 
     @FXML
     private void actualizarChoferes() {
+        listaChoferes.getItems().clear();
         ColaChoferes colaChoferesUsuario = uberApp.getUltimoUsuario().getColaChoferes();
         ColaChoferes aux = new ColaChoferes();
 
@@ -181,7 +170,9 @@ public class Controlador {
 
         Chofer chofer = null;
         while(!colaChoferesUsuario.estaVacia()) {
+
             chofer = (Chofer) colaChoferesUsuario.sacar();
+            System.out.println(chofer.getIdChofer());
             items.add(chofer.getIdChofer() + " eta: " + chofer.getETA());
             aux.meter(chofer);
         }
