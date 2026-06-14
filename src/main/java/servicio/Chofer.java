@@ -17,10 +17,17 @@ public class Chofer {
     private double ETA;
 
 
-    public Chofer(int idChofer, boolean estaOcupado) {
+    public Chofer(int idChofer) {
         this.idChofer = idChofer;
-        this.estaOcupado = estaOcupado;
+        this.estaOcupado = false;
         this.ETA = -1;
+    }
+
+    public boolean decidirAceptarViaje() {
+        Random random = new Random();
+
+        boolean aceptarViaje = random.nextInt(10) < 8;
+        return aceptarViaje;
     }
 
 

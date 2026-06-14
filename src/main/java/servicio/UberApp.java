@@ -24,22 +24,26 @@ public class UberApp {
     public void generarUsuario() {
         Usuario nuevoUsuario = new Usuario(this.usuarios.size());
         nuevoUsuario.cargarPosiciones(this.mapa);
-        nuevoUsuario.actualizarColaChoferes(this.choferes, this.mapa);
         this.usuarios.add(nuevoUsuario);
     }
 
-    public void generarChofer() {
-        Chofer nuevoChofer = new Chofer(this.choferes.size(), false);
-        nuevoChofer.cargarPosicion(this.mapa);
-        this.choferes.add(nuevoChofer);
-        actualizarUsuarios();
+    public ArrayList<Chofer> getChoferesDisponibles() {
+        ArrayList<Chofer> aux = new ArrayList<>();
+        for(Chofer chofer : this.choferes) {
+            if(!chofer.estaOcupado()) {
+                aux.add(chofer);
+            }
+        }
+
+        return aux;
     }
 
-    private void actualizarUsuarios() {
-        for(Usuario usuario : this.usuarios) {
-            usuario.actualizarColaChoferes(this.choferes, this.mapa);
-        }
+    public void generarChofer() {
+        Chofer nuevoChofer = new Chofer(this.choferes.size());
+        nuevoChofer.cargarPosicion(this.mapa);
+        this.choferes.add(nuevoChofer);
     }
+
 
     public void addNuevoViaje(Viaje viaje) {
         this.viajes.add(viaje);

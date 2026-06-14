@@ -1,14 +1,12 @@
 package interfaz;
 
+import gestion.ResultadoSimulacion;
 import grafos.contenedores.PilaSLinkedList;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import mapa.Interseccion;
 import mapa.Mapa;
 import servicio.*;
@@ -45,7 +43,7 @@ public class Controlador {
         uberApp.generarUsuario();
         System.out.println("usuario generado " + uberApp.getUltimoUsuario().getIdUsuario());
         log("Usuario " + uberApp.getUltimoUsuario().getIdUsuario() + " fue generado con exito.");
-        actualizarChoferes();
+
     }
 
     @FXML
@@ -53,7 +51,7 @@ public class Controlador {
         uberApp.generarChofer();
         System.out.println("chofer generado " + uberApp.getUltimoChofer().getIdChofer());
         log("Chofer " + uberApp.getUltimoChofer().getIdChofer() + " fue generado con exito.");
-        actualizarChoferes();
+
     }
 
 
@@ -62,7 +60,7 @@ public class Controlador {
         //uberApp.simular();
 
         Usuario usuario = uberApp.getUltimoUsuario();
-        Viaje viaje = usuario.pedirUber();
+        Viaje viaje = usuario.pedirUber(uberApp.getChoferesDisponibles(), uberApp.getMapa());
         log("El usuario " + usuario.getIdUsuario() + " pidio un uber en " + usuario.getOrigen().getDescripcion() + ".");
         if(viaje != null) {
             uberApp.addNuevoViaje(viaje);
@@ -81,7 +79,7 @@ public class Controlador {
         } else {
             log("Ninguna unidad acepto el viaje del usuario " + usuario.getIdUsuario() + ".");
         }
-        actualizarChoferes();
+        //actualizarChoferes();
     }
 
     /* comenzarRecogida(viaje, mapa, chofer)
@@ -152,41 +150,31 @@ public class Controlador {
     }
 
 
-    @FXML
-    private Label lblUsuario;
 
-    @FXML
-    private ListView<String> listaChoferes;
 
-    @FXML
-    private void actualizarChoferes() {
-        listaChoferes.getItems().clear();
-        ColaChoferes colaChoferesUsuario = uberApp.getUltimoUsuario().getColaChoferes();
-        ColaChoferes aux = new ColaChoferes();
 
-        lblUsuario.setText("Usuario " + uberApp.getUltimoUsuario().getIdUsuario());
 
-        ObservableList<String> items = FXCollections.observableArrayList();
+    @FXML private TableView<ResultadoSimulacion> tablaResultados;
+    @FXML private TableColumn<ResultadoSimulacion, Integer> colOrden;
+    @FXML private TableColumn<ResultadoSimulacion, String> colId;
+    @FXML private TableColumn<ResultadoSimulacion, String> colUbicacion;
+    @FXML private TableColumn<ResultadoSimulacion, String> colETA;
+    @FXML private TableColumn<ResultadoSimulacion, String> colAcepto;
 
-        Chofer chofer = null;
-        while(!colaChoferesUsuario.estaVacia()) {
+    private ObservableList<ResultadoSimulacion> cargarListaResultados(Usuario usuario) {
+        ObservableList<ResultadoSimulacion> listaResultados = FXCollections.observableArrayList();
 
-            chofer = (Chofer) colaChoferesUsuario.sacar();
-            System.out.println(chofer.getIdChofer());
-            items.add(chofer.getIdChofer() + " eta: " + chofer.getETA());
-            aux.meter(chofer);
-        }
 
-        while(!aux.estaVacia()) {
-            colaChoferesUsuario.meter(aux.sacar());
-        }
+        int contadorOrden = 1;          // Nuestro índice autoincrementado
+        boolean viajeTomado = viaje.ge;
 
-        listaChoferes.setItems(items);
+
+
+
+
+
+
     }
-
-
-
-
 
 
 
