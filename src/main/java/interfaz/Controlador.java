@@ -56,8 +56,7 @@ public class Controlador {
 
 
     @FXML
-    private void simularViaje() {
-        //uberApp.simular();
+    private void simularViaje() {;
 
         Usuario usuario = uberApp.getUltimoUsuario();
         Viaje viaje = usuario.pedirUber(uberApp.getChoferesDisponibles(), uberApp.getMapa());
@@ -67,7 +66,6 @@ public class Controlador {
             cargarListaResultados(usuario, viaje);
             viaje.cargarCaminoDestino(uberApp.getMapa());
             viaje.cargarCaminoUsuario(uberApp.getMapa());
-
 
             Chofer chofer = viaje.getChofer();
             log("El chofer " + chofer.getIdChofer() + " acepto el viaje del usuario " + usuario.getIdUsuario() + ".");
@@ -150,11 +148,6 @@ public class Controlador {
         }
 
     }
-
-
-
-
-
 
     @FXML private TableView<ResultadoSimulacion> tablaResultados;
     @FXML private TableColumn<ResultadoSimulacion, Integer> colOrden;

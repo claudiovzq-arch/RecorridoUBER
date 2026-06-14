@@ -24,7 +24,7 @@ public class Mapa {
 
         this.grafoPesos = new GrafoDirigido(this.intersecciones.size());
         cargarGrafoPesos(jsonObject);
-        realizarAlgoritmosGrafo();
+
     }
 
     private String normarlizarNombreCalle(String nombreCalle) {
@@ -36,19 +36,6 @@ public class Mapa {
                 .replaceFirst("^(avenida|av\\.|pasaje|paseo|doctor|dr\\.)\\s+", "")
                 .trim();
     }
-
-    private ArrayList<String> getNodos(JSONObject jsonObject) {
-        ArrayList<String> aux = new ArrayList<>();
-        if(jsonObject.getString("type").equals("LineString")) {
-            JSONArray coordinates = jsonObject.getJSONArray("coordinates");
-            for(int i = 0; i < coordinates.length(); i++) {
-                String nodo = coordinates.getJSONArray(i).toString();
-                aux.add(nodo);
-            }
-        }
-        return aux;
-    }
-
 
     // metodo para cargar el  map de calles <NombreCalle, Calle> y el map de intersecciones
 
@@ -106,8 +93,6 @@ public class Mapa {
                     } else {
                         aux.get(pos).addCalle(calle);
                     }
-
-
                 }
             }
         }
@@ -218,7 +203,7 @@ public class Mapa {
         }
     }
 
-    //metodo auxiliar para mostrar la matriz de pesos
+
 
     private Map<Integer, Interseccion> armarMapaPorId() {
         Map<Integer, Interseccion> aux = new HashMap<>();
@@ -230,11 +215,6 @@ public class Mapa {
         }
 
         return aux;
-    }
-
-    //metodo privado que realiza el Dijkstra y Floyd en el grafo
-    private void realizarAlgoritmosGrafo() {
-        this.grafoPesos.realizarFloyd();
     }
 
     public void mostrarMatrizDePesos() {
