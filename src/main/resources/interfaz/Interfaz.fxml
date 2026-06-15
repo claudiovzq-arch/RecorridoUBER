@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.Controlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="870.0" style="-fx-background-color: #2C3E50;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.Controlador">
    <top>
       <GridPane prefHeight="58.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -25,16 +25,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnGenUsuario" mnemonicParsing="false" onAction="#generarUsuario" text="Generar usuario" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btnGenChofer" mnemonicParsing="false" onAction="#generarChofer" text="Generar Chofer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btnSimular" mnemonicParsing="false" onAction="#simularViaje" text="Comenzar viaje" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnGenUsuario" mnemonicParsing="false" onAction="#generarUsuario" style="-fx-background-color: #3498DB; -fx-font-weight: bold; -fx-text-fill: white;" text="Generar usuario" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnGenChofer" mnemonicParsing="false" onAction="#generarChofer" style="-fx-background-color: #3498DB; -fx-font-weight: bold; -fx-text-fill: white;" text="Generar Chofer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnSimular" mnemonicParsing="false" onAction="#simularViaje" style="-fx-background-color: #3498DB; -fx-font-weight: bold; -fx-text-fill: white;" text="Comenzar viaje" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </top>
    <bottom>
       <VBox prefHeight="159.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblEventos" text="Lista de Eventos">
+            <Label fx:id="lblEventos" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="Lista de Eventos">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
@@ -50,7 +50,7 @@
    <center>
       <VBox prefHeight="382.0" prefWidth="375.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tablaResultados" prefHeight="382.0" prefWidth="379.0">
+            <TableView fx:id="tablaResultados" prefHeight="382.0" prefWidth="379.0" style="-fx-background-color: white;">
               <columns>
                 <TableColumn fx:id="colOrden" prefWidth="61.599974036216736" text="Orden" />
                 <TableColumn fx:id="colId" prefWidth="88.79999542236328" text="ID" />
@@ -63,6 +63,6 @@
       </VBox>
    </center>
    <left>
-       <Pane fx:id="mapContainer" prefHeight="400.0" prefWidth="450.0" />
+       <Pane fx:id="mapContainer" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: white;" />
    </left>
 </BorderPane>
