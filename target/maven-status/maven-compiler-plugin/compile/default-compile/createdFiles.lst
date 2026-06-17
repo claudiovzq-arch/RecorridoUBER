@@ -11,7 +11,6 @@ grafos\contenedores\AbsSet.class
 grafos\contenedores\ListaDoubleLinkedL.class
 grafos\contenedores\ColaLinkedList.class
 grafos\recursos\OperacionesCL1.class
-main.class
 grafos\contenedores\AbsGrafo.class
 interfaz\UsuarioView.class
 mapa\Coordenada.class
@@ -22,6 +21,7 @@ interfaz\Controlador.class
 servicio\Usuario.class
 grafos\contenedores\Lista1DLinkedL.class
 grafos\grafoDirigido\AbsGrafoD.class
+Testing.class
 mapa\Interseccion.class
 mapa\Calle.class
 mapa\ConversorCoordenadas.class

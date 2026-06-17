@@ -27,7 +27,7 @@
          <children>
             <Button fx:id="btnGenUsuario" mnemonicParsing="false" onAction="#generarUsuario" style="-fx-background-color: #3498DB; -fx-font-weight: bold; -fx-text-fill: white;" text="Generar usuario" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button fx:id="btnGenChofer" mnemonicParsing="false" onAction="#generarChofer" style="-fx-background-color: #3498DB; -fx-font-weight: bold; -fx-text-fill: white;" text="Generar Chofer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="btnSimular" mnemonicParsing="false" onAction="#simularViaje" style="-fx-background-color: #3498DB; -fx-font-weight: bold; -fx-text-fill: white;" text="Comenzar viaje" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btnSimular" mnemonicParsing="false" onAction="#simularViaje" style="-fx-background-color: #1be042; -fx-font-weight: bold; -fx-text-fill: white;" text="Comenzar viaje" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </top>

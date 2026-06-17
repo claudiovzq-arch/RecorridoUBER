@@ -203,7 +203,7 @@ public class Controlador {
 
             viajeTomado = conductorActual.decidirAceptarViaje();
 
-            if (viajeTomado) {    // .decidirAceptarViaje() me devuelve un booleano
+            if (viajeTomado || colaChoferesUsuario.estaVacia()) {    // .decidirAceptarViaje() me devuelve un booleano
                 respuesta = "SI (Aceptado)";   //respuesta : SI
                 conductorActual.setEstaOcupado(true);  // Traspasamos el chofer a la lista de Ocupado
                 viaje.setChofer(conductorActual);

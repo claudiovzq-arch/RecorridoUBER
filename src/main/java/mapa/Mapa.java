@@ -24,15 +24,17 @@ public class Mapa {
 
         this.grafoPesos = new GrafoDirigido(this.intersecciones.size());
         cargarGrafoPesos(jsonObject);
-        realizarAlgoritmosGrafo();
     }
     //--------------------------
     public Map<Coordenada, Interseccion> getIntersecciones() {
         return this.intersecciones;
     }
+
     public Map<String, Calle> getCalles() {
         return this.calles;
     }
+
+
     public ArrayList<Coordenada> recorridoNodoANodoB(ArrayList<Integer> caminoID){
         ArrayList<Coordenada> recorrido = new ArrayList<Coordenada>();
         Map<Integer, Interseccion> interseccionesPorID = armarMapaPorId();
@@ -66,18 +68,6 @@ public class Mapa {
                 .toLowerCase()
                 .replaceFirst("^(avenida|av\\.|pasaje|paseo|doctor|dr\\.)\\s+", "")
                 .trim();
-    }
-
-    private ArrayList<String> getNodos(JSONObject jsonObject) {
-        ArrayList<String> aux = new ArrayList<>();
-        if(jsonObject.getString("type").equals("LineString")) {
-            JSONArray coordinates = jsonObject.getJSONArray("coordinates");
-            for(int i = 0; i < coordinates.length(); i++) {
-                String nodo = coordinates.getJSONArray(i).toString();
-                aux.add(nodo);
-            }
-        }
-        return aux;
     }
 
 
@@ -269,9 +259,6 @@ public class Mapa {
     }
 
     //metodo privado que realiza el Dijkstra y Floyd en el grafo
-    private void realizarAlgoritmosGrafo() {
-        this.grafoPesos.realizarFloyd();
-    }
 
     public void mostrarMatrizDePesos() {
         //this.grafoPesos.muestraGrafo();

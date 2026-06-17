@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import servicio.UberApp;
 
 
-public class main {
+public class Testing {
     public static void main(String[] args) {
 
         JSONLector jsonLector = new JSONLector();
