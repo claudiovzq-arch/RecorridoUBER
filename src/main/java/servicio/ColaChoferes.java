@@ -3,8 +3,6 @@ package servicio;
 import grafos.contenedores.ColaPrioridad;
 
 public class ColaChoferes extends ColaPrioridad {
-
-
     @Override
     public boolean esMenor(Object objA, Object objB) {
         Chofer choferA = (Chofer) objA;

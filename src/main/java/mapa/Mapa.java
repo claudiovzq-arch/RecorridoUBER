@@ -14,7 +14,6 @@ public class Mapa {
     private GrafoDirigido grafoPesos;
     private Map<String, Calle> calles;
     private Map<Coordenada, Interseccion> intersecciones;
-     // coordendas en string
 
     public Mapa(JSONObject jsonObject) {
         this.intersecciones = new HashMap<>();

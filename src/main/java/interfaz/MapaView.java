@@ -144,7 +144,7 @@ public class MapaView extends Pane {
         ruta = crearCamino(caminoCompletoIda);
         getChildren().add(ruta);
         //coche.mover(caminoCompletoIda);
-        coche.setFill(Color.RED);
+        //coche.setFill(Color.RED);
 
         getChildren().remove(usuario);
         camino.clear();
@@ -161,7 +161,7 @@ public class MapaView extends Pane {
         ruta = crearCamino(caminoCompletoVuelta);
         getChildren().add(ruta);
         coche.mover(caminoCompletoIda, () -> coche.mover(caminoCompletoVuelta, null));
-        coche.setFill(Color.GREEN);
+        //coche.setFill(Color.GREEN);
         getChildren().remove(ruta);
     }
 
