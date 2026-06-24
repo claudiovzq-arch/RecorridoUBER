@@ -4,6 +4,7 @@ import interfaz.MapaView;
 import mapa.Mapa;
 import tads.ListaChoferes;
 import tads.ListaUsuarios;
+import tads.ListaViajes;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,11 @@ public class UberApp {
     private static int choferesID = 0;
     private static int usuariosID = 0;
 
-    //arraylist
+
     private ListaChoferes choferes;
     private ListaUsuarios usuarios;
     private Mapa mapa;
-    private ArrayList<Viaje> viajes;
+    private ListaViajes viajes;
     //---------------------------------------------
     private MapaView vistaMapa;
     //---------------------------------------------
@@ -24,7 +25,7 @@ public class UberApp {
         this.mapa = mapa;
         this.choferes = new ListaChoferes();
         this.usuarios = new ListaUsuarios();
-        this.viajes = new ArrayList<>();
+        this.viajes = new ListaViajes();
         //-------------------------------------------
         this.vistaMapa = new MapaView(mapa);
         //-------------------------------------------
@@ -70,11 +71,7 @@ public class UberApp {
 
 
     public void addNuevoViaje(Viaje viaje) {
-        this.viajes.add(viaje);
-    }
-
-    public Viaje getUltimoViaje() {
-        return this.viajes.get(this.viajes.size() - 1);
+        this.viajes.insertar(viaje);
     }
 
     public Usuario getUltimoUsuario() {

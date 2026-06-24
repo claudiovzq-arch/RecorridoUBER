@@ -3,6 +3,7 @@ grafos\recursos\OperacionesSLL.class
 interfaz\MapaView.class
 servicio\UberApp.class
 grafos\recursos\OperacionesCL2.class
+tads\ListaUsuarios.class
 grafos\contenedores\GraphPriorityQueue.class
 mapa\Mapa.class
 gestion\ResultadoSimulacion.class
@@ -30,6 +31,7 @@ mapa\Interseccion.class
 mapa\Calle.class
 mapa\ConversorCoordenadas.class
 grafos\recursos\OperacionesCL3.class
+tads\ListaChoferes.class
 servicio\Chofer.class
 grafos\grafoNoDirigido\AbsGrafoND.class
 tads\ListaCalles.class
@@ -44,6 +46,7 @@ grafos\contenedores\IntegerSet.class
 grafos\grafoDirigido\GrafoDirigido.class
 grafos\recursos\OperacionesConj.class
 grafos\contenedores\Lista0DLinkedL.class
+tads\ListaViajes.class
 grafos\contenedores\MatrizGrafo.class
 interfaz\Interfaz.class
 servicio\Viaje.class

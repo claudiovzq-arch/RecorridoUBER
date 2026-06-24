@@ -6,6 +6,8 @@ import mapa.Interseccion;
 import mapa.Mapa;
 
 public class Viaje {
+    private static int siguienteCodigo = 1;
+    private int codigo;
     private Usuario usuario;
     private Chofer chofer;
     private Interseccion origen, destino;
@@ -14,6 +16,8 @@ public class Viaje {
 
 
     public Viaje(Usuario usuario, Chofer chofer) {
+        this.codigo = siguienteCodigo;
+        siguienteCodigo++;
         this.usuario = usuario;
         this.chofer = chofer;
         this.caminoAlDestino = this.caminoAlUsuario = new PilaSLinkedList();
@@ -24,6 +28,10 @@ public class Viaje {
         this.origen = origen;
         this.destino = destino;
         this.finalizado = false;
+    }
+
+    public int getCodigo() {
+        return this.codigo;
     }
 
     public void setChofer(Chofer chofer) {
