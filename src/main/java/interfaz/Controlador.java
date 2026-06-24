@@ -49,8 +49,8 @@ public class Controlador {
     @FXML
     private void generarUsuario() {
         uberApp.generarUsuario();
-        System.out.println("usuario generado " + uberApp.getUltimoUsuario().getIdUsuario());
-        log("Usuario " + uberApp.getUltimoUsuario().getIdUsuario() + " fue generado con exito.");
+        System.out.println("usuario generado " + uberApp.getUltimoUsuario().getId());
+        log("Usuario " + uberApp.getUltimoUsuario().getId() + " fue generado con exito.");
 
     }
 
@@ -69,7 +69,7 @@ public class Controlador {
         System.out.println("Simular viaje");
         Usuario usuario = uberApp.getUltimoUsuario();
         Viaje viaje = usuario.pedirUber(uberApp.getChoferesDisponibles(), uberApp.getMapa());
-        log("El usuario " + usuario.getIdUsuario() + " pidio un uber en " + usuario.getOrigen().getDescripcion() + ".");
+        log("El usuario " + usuario.getId() + " pidio un uber en " + usuario.getOrigen().getDescripcion() + ".");
         if(viaje != null) {
             uberApp.addNuevoViaje(viaje);
             cargarListaResultados(usuario, viaje);
@@ -77,7 +77,7 @@ public class Controlador {
             viaje.cargarCaminoDestino(uberApp.getMapa());
             viaje.cargarCaminoUsuario(uberApp.getMapa());
 
-            log("El chofer " + chofer.getIdChofer() + " acepto el viaje del usuario " + usuario.getIdUsuario() + ".");
+            log("El chofer " + chofer.getIdChofer() + " acepto el viaje del usuario " + usuario.getId() + ".");
 
             new Thread(() -> {
                 comenzarRecogida(viaje, uberApp.getMapa(), chofer);
@@ -88,7 +88,7 @@ public class Controlador {
 
 
         } else {
-            log("Ninguna unidad acepto el viaje del usuario " + usuario.getIdUsuario() + ".");
+            log("Ninguna unidad acepto el viaje del usuario " + usuario.getId() + ".");
         }
         //actualizarChoferes();
     }
@@ -102,7 +102,7 @@ public class Controlador {
 
     private void comenzarRecogida(Viaje viaje, Mapa mapa, Chofer chofer) {
         PilaSLinkedList caminoRecogida = viaje.getCaminoAlUsuario();
-        log("El chofer " + chofer.getIdChofer() + " comenzo el recorrido para recoger al usuario " + viaje.getUsuario().getIdUsuario());
+        log("El chofer " + chofer.getIdChofer() + " comenzo el recorrido para recoger al usuario " + viaje.getUsuario().getId());
         System.out.println("comenzar recogida");
 
         while(!caminoRecogida.estaVacia()) {
@@ -122,7 +122,7 @@ public class Controlador {
         }
 
         if(chofer.getPosicion().equals(viaje.getOrigen())) {
-            log("El chofer " + chofer.getIdChofer() + " ha llegado a recoger al usuario " + viaje.getUsuario().getIdUsuario() + ".");
+            log("El chofer " + chofer.getIdChofer() + " ha llegado a recoger al usuario " + viaje.getUsuario().getId() + ".");
         } else {
             System.out.println("no llego");
         }
@@ -138,7 +138,7 @@ public class Controlador {
 
     private void comenzarViaje(Viaje viaje, Mapa mapa, Chofer chofer) {
         PilaSLinkedList caminoViaje = viaje.getCaminoAlDestino();
-        log("El chofer " + chofer.getIdChofer() + " comenzo el recorrido para llevar al usuario " + viaje.getUsuario().getIdUsuario() + " a su destino " + viaje.getDestino().getDescripcion());
+        log("El chofer " + chofer.getIdChofer() + " comenzo el recorrido para llevar al usuario " + viaje.getUsuario().getId() + " a su destino " + viaje.getDestino().getDescripcion());
 
         //implementacion de mover el objeto en la interfaz
         uberApp.getVistaMapa().desaparecer(viaje.getUsuario());
@@ -160,7 +160,7 @@ public class Controlador {
         }
 
         if(chofer.getPosicion().equals(viaje.getDestino())) {
-            log("El chofer " + chofer.getIdChofer() + " llevo a su destino " + viaje.getDestino().getDescripcion() + " al usuario " + viaje.getUsuario().getIdUsuario() + ".");
+            log("El chofer " + chofer.getIdChofer() + " llevo a su destino " + viaje.getDestino().getDescripcion() + " al usuario " + viaje.getUsuario().getId() + ".");
             chofer.setEstaOcupado(false);
             viaje.setFinalizado(true);
         } else {

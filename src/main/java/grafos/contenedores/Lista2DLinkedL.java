@@ -31,7 +31,7 @@ public abstract class Lista2DLinkedL extends Lista1DLinkedL implements Operacion
             return contador;
         }
 
-        return -1;
+        return -1; //no lo encontro
     }
 
     /*public int buscar(Object elemento) {

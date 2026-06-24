@@ -5,18 +5,18 @@ import grafos.grafoDirigido.GrafoDirigido;
 import mapa.Interseccion;
 import mapa.Mapa;
 import tads.ColaChoferes;
+import tads.ListaChoferes;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Usuario {
-    private int idUsuario;
+    private int id;
     private ColaChoferes colaChoferes;
     private Interseccion origen, destino;
 
 
-    public Usuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public Usuario(int id) {
+        this.id = id;
         this.colaChoferes = new ColaChoferes();
 
     }
@@ -34,12 +34,12 @@ public class Usuario {
     }
 
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
 
@@ -50,14 +50,15 @@ public class Usuario {
     * Luego de realizar el algoritmo antes mencionado, obtiene el costo del camino desde la posicion del usuario
     * hasta las respectivas posiciones del chofer. Actualiza el ETA de todos los choferes antes de meterlos en la cola de choferes.
     * */
-    private void actualizarColaChoferes(ArrayList<Chofer> choferes, Mapa mapa) {
+    private void actualizarColaChoferes(ListaChoferes choferes, Mapa mapa) {
         GrafoDirigido grafoMapa = mapa.getGrafoPesos();
         grafoMapa.realizarDijkstra(this.origen.getID());
 
         this.colaChoferes.limpiar();
-        for(Chofer chofer : choferes) {
+        for(int i = 0; i < choferes.tamanio(); i++) {
 
             //grafoMapa.realizarDijkstra(chofer.getPosicion().getID());
+            Chofer chofer = (Chofer) choferes.devolver(i);
 
             Interseccion posicionChofer = chofer.getPosicion();
             double costo = grafoMapa.getDistanciaDijkstra(posicionChofer.getID()); //para cada chofer, le calcula el ETA
@@ -92,7 +93,7 @@ public class Usuario {
         }
     }
 
-    public Viaje pedirUber(ArrayList<Chofer> choferes, Mapa mapa) {
+    public Viaje pedirUber(ListaChoferes choferes, Mapa mapa) {
         Viaje viaje = null;
 
         boolean atendido = false;
