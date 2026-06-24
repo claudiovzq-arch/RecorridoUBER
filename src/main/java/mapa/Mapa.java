@@ -12,6 +12,9 @@ import java.util.Map;
 
 public class Mapa {
     private GrafoDirigido grafoPesos;
+
+    //cambiar a lista enlazada
+
     private Map<String, Calle> calles;
     private Map<Coordenada, Interseccion> intersecciones;
 
@@ -71,6 +74,13 @@ public class Mapa {
 
 
     // metodo para cargar el  map de calles <NombreCalle, Calle> y el map de intersecciones
+    /* cargar(jsonObject)
+    * Parámetros: "jsonObject" de tipo JSONObject
+    * A partir de un objeto de tipo JSON extraído previamente mediante la clase auxiliar JSONLector,
+    * se realiza la carga de de los atributos "calles" e "intersecciones".
+    * Consiste en leer y cargar las calles del archivo .json. A su vez, se obtiene la cantidad única de calles.
+    * A medida que se realiza esto, en un Map auxiliar se van cargando los púntos unicos detectados.
+    * */
 
     private void cargar(JSONObject jsonObject) {
         JSONArray features = jsonObject.getJSONArray("features");
@@ -140,6 +150,13 @@ public class Mapa {
         depurarIntersecciones(aux); // depura las intesercciones con menos de 2 calles asociadas y las carga en el mapa 'intersecciones'
 
     }
+
+
+    /* depurarIntersecciones(mapa)
+    * Parámetros: "mapa" de tipo Map<Integer, Interseccion> en donde se cargaron los puntos únicos del archivo.
+    * Este método se encarga de depurar aquellas intersecciones o puntos que tiene más de dos calles asociadas.
+    * A su vez, este realiza la carga de los puntos que si corresponden a intersecciones en el atributo "intersecciones".
+    * */
 
     private void depurarIntersecciones(Map<Integer, Interseccion> mapa) {
         // - A partir de un mapa de puntos unicos, depura las intersecciones como aquellas que poseen mas de una calle asociada

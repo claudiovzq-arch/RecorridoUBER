@@ -22,6 +22,9 @@ public class MapaView extends Pane {
     private final ConversorCoordenadas sistemaCoord;
     public static final double WIDTH_MAP = 450;
     public static final double HEIGHT_MAP = 383;
+
+    //array list
+
     private ArrayList<CocheView> coches;
     private ArrayList<UsuarioView> usuarios;
 

@@ -1,18 +1,19 @@
 package mapa;
 
-import java.util.ArrayList;
+import tads.ListaCalles;
 
 public class Interseccion {
     private int ID;
-    private ArrayList<Calle> calles;
+    private ListaCalles calles;
     private Coordenada coordenada;
 
     public Interseccion(Coordenada coordenada) {
-        this.calles = new ArrayList<>();
+        this.calles = new ListaCalles();
+
         this.coordenada = coordenada;
     }
 
-    public ArrayList<Calle> getCalles() {
+    public ListaCalles getCalles() {
         return this.calles;
     }
 
@@ -27,20 +28,18 @@ public class Interseccion {
     }
 
     public int getCantCalles() {
-        return this.calles.size();
-    }
-
-    public void setCalles(ArrayList<Calle> calles) {
-        this.calles = calles;
+        return this.calles.tamanio();
     }
 
     public void addCalle(Calle calle) {
-        if(!this.calles.contains(calle)) {
-            this.calles.add(calle);
+        if(this.calles.estaVacia()) {
+            this.calles.insertar(calle, 0);
+        } else {
+            this.calles.insertar(calle, this.calles.tamanio());
         }
     }
 
-    public Calle calleCompartida(Interseccion inter2) {
+    /*public Calle calleCompartida(Interseccion inter2) {
         Calle c=null;
         for(int i=0; i < this.calles.size(); i++) {
             Calle calle1 = this.calles.get(i);
@@ -53,7 +52,7 @@ public class Interseccion {
             }
         }
         return c;
-    }
+    }*/
 
     public Coordenada getCoordenada() {
         return this.coordenada;
@@ -63,7 +62,7 @@ public class Interseccion {
     public String toString() {
         String cad = "";
 
-        cad += "Interseccion " + this.ID + " " + this.coordenada + " entre " + getStringCalles() + "cant " + this.calles.size();
+        cad += "Interseccion " + this.ID + " " + this.coordenada + " entre " + getStringCalles() + "cant " + this.calles.tamanio();
 
         return cad;
     }
@@ -72,11 +71,12 @@ public class Interseccion {
 
         StringBuilder sb = new StringBuilder("(");
 
-        for(int i = 0; i < calles.size(); i++) {
+        for(int i = 0; i < calles.tamanio(); i++) {
+            Calle calle = (Calle) calles.devolver(i);
 
-            sb.append(calles.get(i).getNombre());
+            sb.append(calle.getNombre());
 
-            if(i < calles.size()-1) {
+            if(i < calles.tamanio()-1) {
                 sb.append(", ");
             }
         }
@@ -88,12 +88,10 @@ public class Interseccion {
 
     private String getStringCalles() {
         String nombreCalles = "";
-        for(int i = 0; i < this.calles.size(); i++) {
-            nombreCalles += this.calles.get(i).getNombre() + " / ";
+        for(int i = 0; i < this.calles.tamanio(); i++) {
+            nombreCalles += ((Calle)this.calles.devolver(i)).getNombre() + " / ";
         }
         return nombreCalles;
-
-
     }
 
     @Override

@@ -4,6 +4,7 @@ import grafos.contenedores.PilaSLinkedList;
 import grafos.grafoDirigido.GrafoDirigido;
 import mapa.Interseccion;
 import mapa.Mapa;
+import tads.ColaChoferes;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -51,11 +52,13 @@ public class Usuario {
     * */
     private void actualizarColaChoferes(ArrayList<Chofer> choferes, Mapa mapa) {
         GrafoDirigido grafoMapa = mapa.getGrafoPesos();
-
         grafoMapa.realizarDijkstra(this.origen.getID());
 
         this.colaChoferes.limpiar();
         for(Chofer chofer : choferes) {
+
+            //grafoMapa.realizarDijkstra(chofer.getPosicion().getID());
+
             Interseccion posicionChofer = chofer.getPosicion();
             double costo = grafoMapa.getDistanciaDijkstra(posicionChofer.getID()); //para cada chofer, le calcula el ETA
 
@@ -91,55 +94,12 @@ public class Usuario {
 
     public Viaje pedirUber(ArrayList<Chofer> choferes, Mapa mapa) {
         Viaje viaje = null;
+
         boolean atendido = false;
-
-        Chofer chofer = null;
-
         actualizarColaChoferes(choferes, mapa);
-
-        viaje = new Viaje(this, null, origen, destino); // el destino podria ser generado aleatoriamente desde
+        viaje = new Viaje(this, null, origen, destino);
 
         return viaje;
-
-
-       /* if(this.colaChoferes.estaVacia()) {
-            System.out.println("Error: cola de choferes vacia");
-        } else {
-            while(!this.colaChoferes.estaVacia() && !atendido) {
-                chofer = (Chofer) this.colaChoferes.sacar();
-
-                // true: acepta / false: no acepto
-                boolean acepta = chofer.decidirAceptarViaje();
-                if(acepta && !chofer.estaOcupado()) {
-                    chofer.setEstaOcupado(acepta);
-                    atendido = true;
-                }
-
-                if(!acepta) {
-                    System.out.println(chofer.getIdChofer() + " rechazo tu viaje");
-                }
-            }
-            if(!atendido && this.colaChoferes.estaVacia()) { // se recorrio la cola de choferes y no acepto ninguno
-                System.out.println("no fuiste atendido");
-            } else if (atendido && !this.colaChoferes.estaVacia()) { // fue atendido por un chofer y quedaron choferes en la cola
-                System.out.println("el chofer " + chofer.getIdChofer() + " ha aceptado tu viaje, esta en camino a recogerte.");
-
-                /* Cómo funciona el sistema luego de que un chofer acepte el viaje del usuario?
-                * -El chofer que aceptó queda guardado en la variable "chofer".
-                *
-                * -Se crea un objeto de tipo Viaje el cual almacena:
-                *   el usuario que pidió el uber,
-                *   el chofer que le aceptó el viaje
-                *   las posiciones de origen y destino de su viaje
-                *
-
-
-
-            }*/
-
-
-
-
     }
 
 

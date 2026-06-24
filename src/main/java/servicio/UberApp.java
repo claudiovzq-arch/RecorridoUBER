@@ -6,6 +6,8 @@ import mapa.Mapa;
 import java.util.ArrayList;
 
 public class UberApp {
+
+    //arraylist
     private ArrayList<Chofer> choferes;
     private ArrayList<Usuario> usuarios;
     private Mapa mapa;

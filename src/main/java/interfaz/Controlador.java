@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import mapa.Interseccion;
 import mapa.Mapa;
 import servicio.*;
+import tads.ColaChoferes;
 
 public class Controlador {
 
@@ -152,7 +153,7 @@ public class Controlador {
             uberApp.getVistaMapa().getCocheView(chofer).actualizar();
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

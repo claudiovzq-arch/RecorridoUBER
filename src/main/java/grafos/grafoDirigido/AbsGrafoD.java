@@ -195,7 +195,7 @@ public abstract class AbsGrafoD extends AbsGrafo implements OperacionesGD{
 	public PilaSLinkedList retornaCaminoDijkstra(int startVertex, int endVertex) {
 		int w;
 		PilaSLinkedList pilaCaminos = new PilaSLinkedList();
-		Dijkstra(startVertex);
+		//Dijkstra(startVertex);
 
 		if (endVertex!=startVertex){
 			w=(int)this.listaCamino.devolver(endVertex);

@@ -1,4 +1,5 @@
 grafos\contenedores\PilaSLinkedList.class
+grafos\recursos\OperacionesSLL.class
 interfaz\MapaView.class
 servicio\UberApp.class
 grafos\recursos\OperacionesCL2.class
@@ -10,14 +11,17 @@ gestion\JSONLector.class
 grafos\contenedores\AbsSet.class
 grafos\contenedores\ListaDoubleLinkedL.class
 grafos\contenedores\ColaLinkedList.class
+grafos\contenedores\Lista2DLinkedL.class
 grafos\recursos\OperacionesCL1.class
 grafos\contenedores\AbsGrafo.class
 interfaz\UsuarioView.class
 mapa\Coordenada.class
 grafos\recursos\OperacionesGND.class
 grafos\recursos\OperacionesGD.class
+grafos\recursos\Contenedor.class
 grafos\recursos\OperacionesG.class
 interfaz\Controlador.class
+grafos\recursos\OperacionesCL4.class
 servicio\Usuario.class
 grafos\contenedores\Lista1DLinkedL.class
 grafos\grafoDirigido\AbsGrafoD.class
@@ -25,10 +29,10 @@ Testing.class
 mapa\Interseccion.class
 mapa\Calle.class
 mapa\ConversorCoordenadas.class
-servicio\ColaChoferes.class
 grafos\recursos\OperacionesCL3.class
 servicio\Chofer.class
 grafos\grafoNoDirigido\AbsGrafoND.class
+tads\ListaCalles.class
 grafos\contenedores\ColaPrioridad.class
 grafos\grafoNoDirigido\GrafoNoDirigido.class
 interfaz\CocheView.class
@@ -43,3 +47,4 @@ grafos\contenedores\Lista0DLinkedL.class
 grafos\contenedores\MatrizGrafo.class
 interfaz\Interfaz.class
 servicio\Viaje.class
+tads\ColaChoferes.class

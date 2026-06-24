@@ -69,6 +69,7 @@ public class Viaje {
         grafoMapa.realizarDijkstra(this.chofer.getPosicion().getID());
 
         this.caminoAlUsuario = grafoMapa.retornaCaminoDijkstra(this.chofer.getPosicion().getID(), this.usuario.getOrigen().getID());
+
     }
 
     public void cargarCaminoDestino(Mapa mapa) {
